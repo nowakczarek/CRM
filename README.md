@@ -41,8 +41,8 @@ Backend/
 ## Setup and Run
 
 1. **Clone the repository**  
-   git clone https://github.com/<your-username>/CRM
-   cd CRM/Backend
+   - git clone https://github.com/nowakczarek/CRM
+   - cd CRM/Backend
    
 2. **Configure the database**
    - Update the connection string in appsettings.json
