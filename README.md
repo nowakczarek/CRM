@@ -31,10 +31,10 @@ The solution follows clean architecture principles, ensuring separation of conce
 ## Solution Structure
 
 Backend/
-├── CRM.Core # Domain models & interfaces
-├── CRM.Infrastructure # EF Core, repositories, persistence
-├── CRM.Application # Services, DTOs, business logic
-├── CRM.API # API controllers, startup, auth
+- CRM.Core # Domain models & interfaces
+- CRM.Infrastructure # EF Core, repositories, persistence
+- CRM.Application # Services, DTOs, business logic
+- CRM.API # API controllers, startup, auth
 
 ---
 
