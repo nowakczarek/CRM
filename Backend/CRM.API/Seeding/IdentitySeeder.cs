@@ -40,7 +40,7 @@ namespace CRM.Api.Seeding
                 {
                     var user = new ApplicationUser
                     {
-                        UserName = u.FirstName,
+                        UserName = u.Email,
                         Email = u.Email,
                         FirstName = u.FirstName,
                         LastName = u.LastName,
