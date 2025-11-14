@@ -8,8 +8,7 @@
             {
                 options.AddPolicy("FrontendPolicy", policy =>
                 {
-                    // to change
-                    policy.WithOrigins("front-end-server")
+                    policy.WithOrigins("http://localhost:4200")
                           .AllowAnyHeader()
                           .AllowAnyMethod()
                           .AllowCredentials();
