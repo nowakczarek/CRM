@@ -1,0 +1,30 @@
+<div class="layout">
+    <header class="topbar">
+        <h2 class="logo">CRM</h2>
+        <form class="search-container">
+            <input class="search-bar">
+            <button class="topbar-btn">Search</button>
+        </form>
+        <button class="topbar-btn" (click)="logout()">Logout</button>
+    </header>
+    
+    <div class="body">
+        <aside class="sidebar">
+            <nav>
+                <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+                <a routerLink="/companies" routerLinkActive="active">Companies</a>
+                <a routerLink="/contacts" routerLinkActive="active">Contacts</a>
+                <a routerLink="/activities" routerLinkActive="active">Activities</a>
+                <a routerLink="/leads" routerLinkActive="active">Leads</a>
+            </nav>
+        </aside>
+
+        <div class="main">
+            <div class="content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+
+    </div>
+
+</div>
