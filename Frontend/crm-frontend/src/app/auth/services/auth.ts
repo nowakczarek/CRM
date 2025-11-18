@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 interface LoginResponse {
@@ -11,8 +11,7 @@ interface LoginResponse {
 })
 export class Auth {
   private apiUrl = 'https://localhost:7058/api/auth'
-
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient)
 
   login(email: string, password: string) : Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email , password })

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from '../services/auth';
 import { CommonModule } from '@angular/common';
@@ -13,7 +13,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class Login {
 
-  constructor(private authService: Auth, private router: Router) {}
+  private authService = inject(Auth)
+  private router = inject(Router)
 
   email = ''
   password = ''
