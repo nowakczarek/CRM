@@ -13,7 +13,11 @@ export const routes: Routes = [
         component: Layout,
         canActivate: [authGuard],
         children: [
-            {path: 'dashboard', component: Dashboard}
+            {path: 'dashboard', component: Dashboard, canActivate:[authGuard]},
+            {
+                path: 'companies',
+                loadChildren: () => import('./pages/companies/companies.routes').then(m => m.companiesRoutes)
+            }
         ]
     }
 ];
