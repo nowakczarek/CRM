@@ -1,0 +1,45 @@
+<h2 class="title">{{ editing ? 'Edit Company' : 'Create Company' }}</h2>
+
+<form [formGroup]="companyForm" (ngSubmit)="save()" class="form">
+    <div class="form-group">
+        <label>Name<span class="required">*</span></label>
+        <input type="text" formControlName="name">
+        @if(companyForm.get('name')?.touched && companyForm.get('name')?.invalid){
+        <div class="error">
+            Name is required.
+        </div>
+        }
+    </div>
+    <div class="form-group">
+        <label>Industry</label>
+        <input type="text" formControlName="industry">
+    </div>
+    <div class="form-group">
+        <label>NIP<span class="required">*</span></label>
+        <input type="text" formControlName="nip">
+
+        @if(companyForm.get('nip')?.touched && companyForm.get('nip')?.invalid){
+        <div class="error">
+            NIP is required.
+        </div>
+        }
+    </div>
+    <div class="form-group">
+        <label>Website</label>
+        <input type="text" formControlName="website">
+    </div>
+    <div class="form-group">
+        <label>Phone Number</label>
+        <input type="text" formControlName="phoneNumber">
+    </div>
+    <div class="form-group">
+        <label>Address</label>
+        <textarea formControlName="address"></textarea>
+    </div>
+
+    <div class="actions">
+    <button type="submit" class="btn primary" [disabled]="companyForm.invalid">{{editing ? 'Update' : 'Create'}}</button>
+
+    <button type="button" class="btn" (click)="cancel()">Cancel</button>
+    </div>
+</form>
