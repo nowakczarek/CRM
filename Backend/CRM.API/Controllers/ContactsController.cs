@@ -35,6 +35,16 @@ namespace CRM.Api.Controllers
             return Ok(contacts.Select(c => c.ToDto()));
         }
 
+        [HttpGet("company/{companyId:guid}")]
+        public async Task<ActionResult<IEnumerable<ContactDto>>> GetByCompanyId(Guid companyId)
+        {
+            var userId = GetUserId();
+
+            var contacts = await contactService.GetByCompanyIdAsync(companyId, userId);
+
+            return Ok(contacts.Select(c => c.ToDto()));
+        }
+
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<ContactDto>> GetById(Guid id)
         {

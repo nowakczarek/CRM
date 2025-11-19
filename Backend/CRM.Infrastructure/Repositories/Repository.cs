@@ -11,8 +11,8 @@ namespace CRM.Infrastructure.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly CrmDbContext context;
-        private readonly DbSet<T> dbSet;
+        protected readonly CrmDbContext context;
+        protected readonly DbSet<T> dbSet;
 
         public Repository(CrmDbContext context)
         {

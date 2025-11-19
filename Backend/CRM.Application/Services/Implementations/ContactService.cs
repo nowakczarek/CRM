@@ -6,9 +6,9 @@ namespace CRM.Application.Services.Implementations
 {
     public class ContactService : IContactService
     {
-        private readonly IRepository<Contact> repository;
+        private readonly IContactRepository repository;
 
-        public ContactService(IRepository<Contact> repository)
+        public ContactService(IContactRepository repository)
         {
             this.repository = repository;
         }
@@ -43,13 +43,19 @@ namespace CRM.Application.Services.Implementations
             return all.Where(c => c.UserId == userId);
         }
 
+        public async Task<IEnumerable<Contact>> GetByCompanyIdAsync(Guid companyId, Guid userId)
+        {
+            var contacts = await repository.GetByCompanyIdAsync(companyId);
+            return contacts.Where(c => c.UserId == userId);
+        }
+
         public async Task<Contact?> GetByIdAsync(Guid id, Guid userId)
         {
-            var lead = await repository.GetByIdAsync(id);
+            var contact = await repository.GetByIdAsync(id);
 
-            if (lead?.UserId == userId)
+            if (contact?.UserId == userId)
             {
-                return lead;
+                return contact;
             }
 
             return null;

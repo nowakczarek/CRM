@@ -21,6 +21,8 @@ namespace CRM.Api.Extensions
         {
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
+            services.AddScoped<IContactRepository, ContactRepository>();
+
             return services;
         }
     }
