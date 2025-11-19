@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Company, FormCompany } from '../models/company.model';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
 
-  private apiUrl = 'https://localhost:7058/api/companies'
+  private apiUrl = environment.apiBaseUrl +'companies'
   private http = inject(HttpClient)
 
   getAll() : Observable<Company[]>{
@@ -16,7 +17,7 @@ export class CompanyService {
   }
 
   getById(id: string): Observable<Company>{
-    return this.http.get<Company>(`${this.apiUrl}${id}`)
+    return this.http.get<Company>(`${this.apiUrl}/${id}`)
   }
 
   create(company: FormCompany): Observable<Company> {
