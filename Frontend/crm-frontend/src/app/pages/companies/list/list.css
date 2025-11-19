@@ -1,0 +1,63 @@
+.title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.actions {
+  margin-bottom: 1rem;
+}
+
+.company-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+.company-table thead {
+  background: #f3f4f6;
+}
+
+.company-table th,
+.company-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.company-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.btn-primary {
+  background: #4b5563;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #374151;
+}
+
+.btn-secondary {
+  background: #4b5563;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: #374151;
+}
+
+.link {
+  color: #2563eb;
+  text-decoration: underline;
+}

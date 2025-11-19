@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { CompanyService } from '../../../services/company.service';
 import { Router } from '@angular/router';
 import { Company } from '../../../models/company.model';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-list',
-  imports: [],
+  imports: [DatePipe],
   standalone: true,
   templateUrl: './list.html',
   styleUrl: './list.css'
@@ -28,5 +29,9 @@ export class List {
 
   newCompany() {
     this.router.navigate(['/companies/new'])
+  }
+  
+  editCompany(id: string) {
+    this.router.navigate(['/companies', id, 'edit']);
   }
 }
