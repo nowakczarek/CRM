@@ -20,6 +20,10 @@ export class ContactService {
     return this.http.get<Contact>(`${this.apiUrl}/${id}`)
   }
 
+  getByCompanyId(companyId: string) : Observable<Contact[]>{
+    return this.http.get<Contact[]>(`${this.apiUrl}/company/${companyId}`)
+  }
+
   create(contact: FormContact) : Observable<Contact>{
     return this.http.post<Contact>(`${this.apiUrl}`, contact)
   }
