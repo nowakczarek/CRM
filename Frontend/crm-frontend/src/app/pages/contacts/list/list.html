@@ -1,0 +1,39 @@
+<h2> Contacts </h2>
+
+<div>
+    <select [(ngModel)]="selectedCompanyId">
+        <option value="">-- Choose Company --</option>
+
+        @for (company of companies; track company.id) {
+            <option [value] = "company.id">
+                {{company.name}}
+            </option>
+        }
+    </select>
+    <button (click)="newContact()">Add Contact</button>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>PhoneNumber</th>
+            <th>Position</th>
+            <th>Created</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (contact of contacts; track contact.id) {
+            <tr>
+                <td>{{ contact.firstName }}</td>
+                <td>{{ contact.lastName }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.phoneNumber }}</td>
+                <td> {{ contact.position }}</td>
+                <td> {{ contact.createdAt }}</td>
+            </tr>
+        }
+    </tbody>
+</table>
