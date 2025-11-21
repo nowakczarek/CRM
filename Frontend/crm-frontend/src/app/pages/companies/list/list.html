@@ -20,7 +20,7 @@
 
   <tbody>
     @for (company of companies; track company.id) {
-      <tr class="table-row">
+      <tr class="table-row" (click)="goToCompany(company.id)">
         <td>{{ company.name }}</td>
         <td>{{ company.industry }}</td>
         <td>{{ company.nip }}</td>

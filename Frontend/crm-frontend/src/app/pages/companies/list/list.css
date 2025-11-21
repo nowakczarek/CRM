@@ -61,3 +61,7 @@
   color: #2563eb;
   text-decoration: underline;
 }
+
+.table-row:hover{
+  cursor:pointer;
+}

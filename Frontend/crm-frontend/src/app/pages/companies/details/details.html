@@ -1,1 +1,35 @@
-<p>details works!</p>
+<h2>{{ company.name }}</h2>
+
+<p><strong>Industry:</strong> {{ company.industry }}</p>
+<p><strong>NIP:</strong> {{ company.nip }}</p>
+<p><strong>Website:</strong> {{ company.website }}</p>
+<p><strong>Phone:</strong> {{ company.phoneNumber }}</p>
+<p><strong>Address:</strong> {{ company.address }}</p>
+
+<button (click)="editCompany()">Edit Company</button>
+
+<hr>
+
+<h3>Contacts</h3>
+
+<button (click)="addContact()">Add Contact</button>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th></th>
+  </tr>
+@for (contact of contacts; track contact.id) {
+    <tr>
+        <td>{{ contact.firstName }} {{ contact.lastName }}</td>
+        <td>{{ contact.email }}</td>
+        <td>{{ contact.phoneNumber }}</td>
+        <td>
+        <button (click)="goToContact(contact.id)">View</button>
+        </td>
+    </tr>
+}
+
+</table>
