@@ -21,5 +21,12 @@ namespace CRM.Infrastructure.Repositories
         {
             return await context.Contacts.Where(c => c.CompanyId == companyId).ToListAsync();
         }
+
+        public override async Task<IEnumerable<Contact>> GetAllAsync()
+        {
+            return await context.Contacts
+                .Include(c => c.Company)
+                .ToListAsync();
+        }
     }
 }

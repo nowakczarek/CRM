@@ -35,5 +35,15 @@ namespace CRM.Application.DTOs
         string? Position
         );
 
-
+    public record ContactWithCompanyDto(
+        Guid Id,
+        Guid? CompanyId,
+        string CompanyName,
+        string FirstName,
+        string LastName,
+        string? Email,
+        string? PhoneNumber,
+        string? Position,
+        DateTime CreatedAt
+        );
 }

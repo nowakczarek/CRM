@@ -26,13 +26,13 @@ namespace CRM.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ContactDto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<ContactWithCompanyDto>>> GetAll()
         {
             var userId = GetUserId();
 
             var contacts = await contactService.GetAllAsync(userId);
 
-            return Ok(contacts.Select(c => c.ToDto()));
+            return Ok(contacts.Select(c => c.ToDtoWithCompany()));
         }
 
         [HttpGet("company/{companyId:guid}")]

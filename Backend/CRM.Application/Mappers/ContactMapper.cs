@@ -45,5 +45,18 @@ namespace CRM.Application.Mappers
             contact.PhoneNumber = dto.PhoneNumber;
             contact.Position = dto.Position;
         }
+
+        public static ContactWithCompanyDto ToDtoWithCompany(this Contact contact)
+            => new ContactWithCompanyDto(
+                contact.Id,
+                contact.CompanyId,
+                contact.Company.Name,
+                contact.FirstName,
+                contact.LastName,
+                contact.Email,
+                contact.PhoneNumber,
+                contact.Position,
+                contact.CreatedAt
+                );
     }
 }
