@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Auth } from '../auth/services/auth';
 
@@ -11,7 +11,9 @@ import { Auth } from '../auth/services/auth';
 })
 export class Layout {
   
-  constructor(private auth: Auth, private router: Router){}
+  private auth = inject(Auth)
+  private router = inject(Router)
+
 
   logout(){
     this.auth.logout()

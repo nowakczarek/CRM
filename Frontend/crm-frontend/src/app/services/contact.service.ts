@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Contact, FormContact } from '../models/contact.model';
+import { Contact, ContactWithCompanyName, FormContact } from '../models/contact.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,8 +12,8 @@ export class ContactService {
   private apiUrl = environment.apiBaseUrl + 'contacts'
   private http = inject(HttpClient)
 
-  getAll() : Observable<Contact[]>{
-    return this.http.get<Contact[]>(`${this.apiUrl}`) 
+  getAll() : Observable<ContactWithCompanyName[]>{
+    return this.http.get<ContactWithCompanyName[]>(`${this.apiUrl}`) 
   }
 
   getById(id : string) : Observable<Contact>{

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ContactService } from '../../../services/contact.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -12,12 +13,51 @@ import { ActivatedRoute } from '@angular/router';
 export class Form {
   private contactService = inject(ContactService)
   private route = inject(ActivatedRoute)
+  private router = inject(Router)
 
+  id?: string
+  editing = false
+
+  contactForm = new FormGroup({
+    companyId: new FormControl<string>(``, {nonNullable: true}),
+    firstName: new FormControl<string>('', {validators: Validators.required, nonNullable: true}),
+    lastName: new FormControl<string>('', {validators: Validators.required, nonNullable: true}),
+    email: new FormControl<string>(''),
+    phoneNumber: new FormControl<string>(''),
+    position: new FormControl<string>('')
+  })
+  
   ngOnInit(){
-    const id = this.route.snapshot.paramMap.get('id')
+    this.id = this.route.snapshot.paramMap.get('id') ?? undefined
 
-    if(!id) return
+    const passedCompanyId = this.route.snapshot.queryParamMap.get('companyId')
 
-    this.contactService.getById(id)
+    if(this.id){
+      this.editing = true;
+      this.contactService.getById(this.id).subscribe(contact =>
+        this.contactForm.patchValue(contact)
+      );
+    } else if(passedCompanyId){
+      this.contactForm.patchValue({ companyId: passedCompanyId });
+    }
+    
+  }
+
+  save(){
+    if(this.contactForm.invalid) return
+
+    if(this.editing && this.id){
+      this.contactService.update(this.contactForm.getRawValue(), this.id).subscribe(() => {
+        this.router.navigate(['/contacts'])
+      })
+    } else {
+      this.contactService.create(this.contactForm.getRawValue()).subscribe(() => {
+        this.router.navigate(['/contacts'])
+      })
+    }
+  }
+
+  cancel(){
+    this.router.navigate(['/contacts'])
   }
 }

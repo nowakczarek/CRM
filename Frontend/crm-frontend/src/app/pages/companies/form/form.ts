@@ -39,9 +39,6 @@ export class Form {
   }
 
   save(){
-    console.log("save clicked")
-    console.log("valid:", this.companyForm.valid)
-    console.log(this.companyForm.value)
     if(this.companyForm.invalid) return
 
     if(this.editing && this.id){

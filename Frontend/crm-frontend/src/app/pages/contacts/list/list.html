@@ -1,38 +1,56 @@
-<h2> Contacts </h2>
+<h2 class="title">Contacts</h2>
 
-<div>
-    <select [(ngModel)]="selectedCompanyId">
+<div class="toolbar">
+    <select [(ngModel)]="selectedCompanyId" class="company-select">
         <option value="">-- Choose Company --</option>
 
         @for (company of companies; track company.id) {
-            <option [value] = "company.id">
-                {{company.name}}
+            <option [value]="company.id">
+                {{ company.name }}
             </option>
         }
     </select>
-    <button (click)="newContact()">Add Contact</button>
+
+    <button class="btn-primary" (click)="newContact()">+ Add Contact</button>
 </div>
 
-<table>
+<table class="company-table">
     <thead>
         <tr>
-            <th>FirstName</th>
-            <th>LastName</th>
+            <th></th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Company</th>
             <th>Email</th>
-            <th>PhoneNumber</th>
+            <th>Phone Number</th>
             <th>Position</th>
             <th>Created</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @for (contact of contacts; track contact.id) {
-            <tr>
+            <tr class="table-row">
+                <td>
+                    <div class="avatar">{{contact.firstName.charAt(0).toUpperCase()}}{{contact.lastName.charAt(0).toUpperCase()}}</div>
+                </td>
                 <td>{{ contact.firstName }}</td>
                 <td>{{ contact.lastName }}</td>
+                <td>
+                    <a class="company-link"
+                        (click)="goToCompany(contact.companyId)">
+                        {{ contact.companyName }}
+                    </a>
+                </td>
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.phoneNumber }}</td>
-                <td> {{ contact.position }}</td>
-                <td> {{ contact.createdAt }}</td>
+                <td>{{ contact.position }}</td>
+                <td>{{ contact.createdAt | date: 'yyyy-MM-dd'}}</td>
+                <td>
+                    <button class="btn-secondary" (click)="editContact(contact.id)">
+                        Edit
+                    </button>
+                </td>
             </tr>
         }
     </tbody>
