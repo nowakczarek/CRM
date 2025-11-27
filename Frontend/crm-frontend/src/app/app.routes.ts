@@ -16,11 +16,15 @@ export const routes: Routes = [
             {path: 'dashboard', component: Dashboard, canActivate:[authGuard]},
             {
                 path: 'companies',
-                loadChildren: () => import('./pages/companies/companies.routes').then(m => m.companiesRoutes)
+                loadChildren: () => import('./pages/companies/companies.routes').then(r => r.companiesRoutes)
             },
             {
                 path: 'contacts',
-                loadChildren: () => import('./pages/contacts/contacts.routes').then(c => c.contactsRoutes)
+                loadChildren: () => import('./pages/contacts/contacts.routes').then(r => r.contactsRoutes)
+            },
+            {
+                path: 'activities',
+                loadChildren: () => import('./pages/activities/activities.routes').then(r => r.activitiesRoutes)
             }
         ]
     }

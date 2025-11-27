@@ -1,0 +1,40 @@
+<h2 class="title">Activities</h2>
+
+<table class="company-table">
+    <thead>
+        <tr>
+            <th>Company</th>
+            <th>Person</th>
+            <th>Subject</th>
+            <th>Description</th>
+            <th>CreatedAt</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (activity of activities; track activity.id) {
+            <tr class="table-row">
+                <td>
+                    <a class="company-link"
+                        (click)="goToCompany(activity.companyId)">
+                        {{ activity }}
+                    </a>
+                </td>
+                <td>
+                    <a class="company-link"
+                        (click)="goToContact(activity.contactId)">
+                        {{ activity }}
+                    </a>
+                </td>
+                <td>{{ activity.subject }}</td>
+                <td>{{ activity.description }}</td>
+                <td>{{ activity.createdAt | date: 'yyyy-MM-dd'}}</td>
+                <td>
+                    <button class="btn-secondary" (click)="editActivity(activity.id)">
+                        Edit
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
