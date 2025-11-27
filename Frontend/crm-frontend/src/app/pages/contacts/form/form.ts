@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { ContactService } from '../../../services/contact.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './form.html',
   standalone: true,
   styleUrl: './form.css'
