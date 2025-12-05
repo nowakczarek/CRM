@@ -11,6 +11,7 @@ namespace CRM.Core.Enums
         Email,
         Call,
         VideoCall,
-        Meeting
+        Meeting,
+        Other
     }
 }

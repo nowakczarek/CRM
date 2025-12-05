@@ -40,5 +40,19 @@ namespace CRM.Application.Mappers
             activity.Subject = dto.Subject;
             activity.Description = dto.Description;
         }
+
+        public static FullActivityDto ToFullDto(this Activity activity)
+            => new FullActivityDto(
+                activity.Id,
+                activity.CompanyId,
+                activity.ContactId,
+                activity.Type,
+                activity.Company.Name,
+                activity.Contact.FirstName,
+                activity.Contact.LastName,
+                activity.Subject,
+                activity.Description,
+                activity.CreatedAt
+                );
     }
 }

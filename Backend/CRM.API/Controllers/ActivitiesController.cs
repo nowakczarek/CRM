@@ -26,12 +26,12 @@ namespace CRM.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ActivityDto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<FullActivityDto>>> GetAll()
         {
             var userId = GetUserId();
 
             var activities = await activityService.GetAllAsync(userId);
-            return Ok(activities.Select(a => a.ToDto()));
+            return Ok(activities.Select(a => a.ToFullDto()));
         }
 
         [HttpGet("{id:guid}")]

@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CRM.Core.Models;
+using CRM.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
+namespace CRM.Infrastructure.Repositories
+{
+    public class ActivityRepository : Repository<Activity>
+    {
+        public ActivityRepository(CrmDbContext context) : base(context)
+        {
+            
+        }
+
+        public override async Task<IEnumerable<Activity>> GetAllAsync()
+        {
+            return await context.Activities
+                .Include(c => c.Company)
+                .Include(c => c.Contact)
+                .ToListAsync();
+        }
+    }
+}

@@ -30,5 +30,18 @@ namespace CRM.Application.DTOs
         string Subject,
         string? Description
         );
-    
+
+    public record FullActivityDto(
+        Guid Id,
+        Guid CompanyId,
+        Guid ContactId,
+        ActivityType Type,
+        string CompanyName,
+        string ContactFirstName,
+        string ContactLastName,
+        string Subject,
+        string? Description,
+        DateTime CreatedAt
+        );
+
 }
