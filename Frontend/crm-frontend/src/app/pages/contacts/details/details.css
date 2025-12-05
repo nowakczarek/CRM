@@ -1,0 +1,56 @@
+.container {
+  margin: auto;
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.avatar {
+  width: 4rem;
+  height: 4rem;
+  background: #4b5563;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
+.header-info h2 {
+  margin: 0;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.header-actions button {
+  margin-right: 0.5rem;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 2rem;
+}
+
+.company-card {
+  cursor: pointer;
+}
+
+.activities-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activity-card {
+  margin-bottom: 1rem;
+}

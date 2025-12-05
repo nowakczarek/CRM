@@ -28,7 +28,7 @@ export class Form {
   })
 
   ngOnInit(){
-    this.id = this.route.snapshot.paramMap.get('id') ?? undefined
+    this.id = this.route.snapshot.paramMap.get('companyId') ?? undefined
 
     if(this.id){
       this.editing = true

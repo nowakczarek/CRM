@@ -52,4 +52,8 @@ export class List {
     this.router.navigate(['/companies', companyId])
   }
 
+  goToDetails(id: string){
+    this.router.navigate(['/contacts', id])
+  }
+
 }

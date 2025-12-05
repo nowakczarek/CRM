@@ -16,8 +16,8 @@ export class ContactService {
     return this.http.get<ContactWithCompanyName[]>(`${this.apiUrl}`) 
   }
 
-  getById(id : string) : Observable<Contact>{
-    return this.http.get<Contact>(`${this.apiUrl}/${id}`)
+  getById(id : string) : Observable<ContactWithCompanyName>{
+    return this.http.get<ContactWithCompanyName>(`${this.apiUrl}/${id}`)
   }
 
   getByCompanyId(companyId: string) : Observable<Contact[]>{

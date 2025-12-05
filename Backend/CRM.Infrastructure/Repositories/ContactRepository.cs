@@ -28,5 +28,12 @@ namespace CRM.Infrastructure.Repositories
                 .Include(c => c.Company)
                 .ToListAsync();
         }
+
+        public async override Task<Contact> GetByIdAsync(Guid id)
+        {
+            return await context.Contacts
+                .Include(c => c.Company)
+                .FirstAsync(a => a.Id == id);
+        }
     }
 }

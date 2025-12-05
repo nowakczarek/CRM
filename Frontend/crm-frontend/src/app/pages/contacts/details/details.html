@@ -1,1 +1,57 @@
-<p>details works!</p>
+<div class="container">
+
+    <div class="header">
+        <div class="avatar">
+            <span>{{ contact.firstName.charAt(0) }}{{ contact.lastName.charAt(0) }}</span>
+        </div>
+
+        <div class="header-info">
+            <h2>{{ contact.firstName }} {{ contact.lastName }}</h2>
+            <div class="subtitle">{{ contact.position }} at {{ contact.companyName }}</div>
+
+            <div class="header-actions">
+                <button mat-raised-button color="primary" (click)="editContact()">Edit</button>
+                <button mat-stroked-button (click)="goBack()">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-grid">
+
+        <div class="left-column">
+            <mat-card>
+                <mat-card-title>Contact Information</mat-card-title>
+                <mat-card-content>
+                    <p><strong>Company:</strong> {{ contact.companyName || '—' }}</p>
+                    <p><strong>Email:</strong> {{ contact.email || '—' }}</p>
+                    <p><strong>Phone:</strong> {{ contact.phoneNumber || '—' }}</p>
+                    <p><strong>Position:</strong> {{ contact.position || '—' }}</p>
+                    <p><strong>Created:</strong> {{ contact.createdAt | date: 'dd-MM-yyyy' }}</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="right-column">
+            <div class="activities-header">
+                <h3>Activities</h3>
+                <button mat-raised-button color="primary" (click)="addActivity()">
+                + Add Activity
+                </button>
+            </div>
+
+            @for (activity of activities; track activity.id) {
+                <mat-card class="activity-card">
+                    <mat-card-title>{{ activity.subject }}</mat-card-title>
+                    <mat-card-subtitle>
+                        {{ activity.type }} - {{ activity.createdAt | date:'dd-MM-yyyy' }}
+                    </mat-card-subtitle>
+                    <mat-card-content>
+                        <p>{{ activity.description }}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button (click)="editActivity(activity.id)">Edit</button>
+                    </mat-card-actions>
+                </mat-card>
+                }
+    </div>
+</div>

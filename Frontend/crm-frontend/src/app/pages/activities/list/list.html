@@ -1,5 +1,9 @@
 <h2 class="title">Activities</h2>
 
+<div class="actions">
+  <button class="btn-primary" (click)="create()">+ New Company</button>
+</div>
+
 <table class="company-table">
     <thead>
         <tr>
@@ -17,18 +21,18 @@
                 <td>
                     <a class="company-link"
                         (click)="goToCompany(activity.companyId)">
-                        {{ activity }}
+                        {{ activity.companyName }}
                     </a>
                 </td>
                 <td>
                     <a class="company-link"
                         (click)="goToContact(activity.contactId)">
-                        {{ activity }}
+                        {{ activity.contactFirstName }} {{ activity.contactLastName }}
                     </a>
                 </td>
                 <td>{{ activity.subject }}</td>
                 <td>{{ activity.description }}</td>
-                <td>{{ activity.createdAt | date: 'yyyy-MM-dd'}}</td>
+                <td>{{ activity.createdAt | date: 'dd-MM-yyyy'}}</td>
                 <td>
                     <button class="btn-secondary" (click)="editActivity(activity.id)">
                         Edit

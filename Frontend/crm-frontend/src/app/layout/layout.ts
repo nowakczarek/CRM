@@ -14,7 +14,6 @@ export class Layout {
   private auth = inject(Auth)
   private router = inject(Router)
 
-
   logout(){
     this.auth.logout()
     this.router.navigate(['/login'])

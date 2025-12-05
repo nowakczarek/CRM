@@ -28,7 +28,7 @@ export class Form {
   })
   
   ngOnInit(){
-    this.id = this.route.snapshot.paramMap.get('id') ?? undefined
+    this.id = this.route.snapshot.paramMap.get('contactId') ?? undefined
 
     const passedCompanyId = this.route.snapshot.queryParamMap.get('companyId')
 

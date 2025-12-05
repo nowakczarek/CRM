@@ -1,1 +1,30 @@
-<p>form works!</p>
+<h2 class="title">{{ editing ? 'Edit Activity' : 'Create Activity' }}</h2>
+
+<form [formGroup]="activityForm" (ngSubmit)="save()">
+    <div>
+        <mat-form-field>
+            <mat-label>Activity Type</mat-label>
+            <mat-select formControlName="type">
+                @for (type of activityTypes; track type) {
+                    <mat-option [value]="type">{{ type }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Subject</mat-label>
+            <input matInput type="text" formControlName="subject">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea matInput cols="50" rows="10" formControlName="description"></textarea>
+        </mat-form-field>
+    </div>
+    <div class="buttons-row">
+        <button matButton="filled" type="submit" [disabled]="activityForm.invalid">{{editing ? 'Update' : 'Create'}}</button>
+        <button matButton="elevated" type="button" (click)="cancel()">Cancel</button>
+    </div>
+</form>

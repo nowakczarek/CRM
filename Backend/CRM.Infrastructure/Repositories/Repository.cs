@@ -37,7 +37,7 @@ namespace CRM.Infrastructure.Repositories
             return await dbSet.ToListAsync();
         }
 
-        public async Task<T?> GetByIdAsync(Guid id)
+        public virtual async Task<T?> GetByIdAsync(Guid id)
         {
             return await dbSet.FindAsync(id);
         }

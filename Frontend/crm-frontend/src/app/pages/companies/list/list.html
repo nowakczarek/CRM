@@ -38,7 +38,7 @@
 
         <td>{{ company.phoneNumber }}</td>
         <td>{{ company.address }}</td>
-        <td>{{ company.createdAt | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ company.createdAt | date: 'dd-MM-yyyy' }}</td>
 
         <td>
           <button class="btn-secondary" (click)="editCompany(company.id)">

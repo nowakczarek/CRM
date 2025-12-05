@@ -8,6 +8,6 @@ import { Details } from "./details/details";
 export const activitiesRoutes: Routes = [
     {path: '', component: List, canActivate: [authGuard]},
     {path: 'new', component: Form, canActivate: [authGuard]},
-    {path: ':id', component: Details, canActivate: [authGuard]},
-    {path: ':id/edit', component: Form, canActivate: [authGuard]}
+    {path: ':activityId', component: Details, canActivate: [authGuard]},
+    {path: ':activityId/edit', component: Form, canActivate: [authGuard]}
 ]

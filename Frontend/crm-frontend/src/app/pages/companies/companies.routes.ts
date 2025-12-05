@@ -8,6 +8,11 @@ import { authGuard } from '../../auth/guards/auth-guard';
 export const companiesRoutes: Routes = [
     {path: '', component: List, canActivate:[authGuard] },
     {path: 'new', component: Form, canActivate: [authGuard]},
-    {path: ':id', component: Details, canActivate: [authGuard]},
-    {path: ':id/edit', component: Form, canActivate: [authGuard]}
+    {path: ':companyId', component: Details, canActivate: [authGuard]},
+    {path: ':companyId/edit', component: Form, canActivate: [authGuard]},
+    {
+        path: ':companyId/contacts',
+        loadChildren: () =>
+            import('../contacts/contacts.routes').then(r => r.contactsRoutes)
+    }
 ]

@@ -48,6 +48,17 @@ namespace CRM.Api.Controllers
             return Ok(activity.ToDto());
         }
 
+        [HttpGet("contact/{contactId:guid}")]
+        public async Task<ActionResult<IEnumerable<FullActivityDto>>> GetAllByContactId(Guid contactId)
+        {
+            var userId = GetUserId();
+
+            var activities = await activityService.GetAllByContactId(contactId, userId);
+
+            return Ok(activities.Select(a => a.ToFullDto()));
+
+        }
+
         [HttpPost]
         public async Task<ActionResult<ActivityDto>> Add([FromBody]CreateActivityDto dto)
         {

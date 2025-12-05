@@ -95,3 +95,7 @@
   left: 25%;
   border: 5rem #000000;
 }
+
+.table-row {
+  cursor: pointer;
+}

@@ -6,9 +6,9 @@ namespace CRM.Application.Services.Implementations
 {
     public class ActivityService : IActivityService
     {
-        private readonly IRepository<Activity> repository;
+        private readonly IActivityRepository repository;
 
-        public ActivityService(IRepository<Activity> repository)
+        public ActivityService(IActivityRepository repository)
         {
             this.repository = repository;
         }
@@ -39,6 +39,13 @@ namespace CRM.Application.Services.Implementations
         public async Task<IEnumerable<Activity>> GetAllAsync(Guid userId)
         {
             var all = await repository.GetAllAsync();
+            return all.Where(x => x.UserId == userId);
+        }
+
+        public async Task<IEnumerable<Activity>> GetAllByContactId(Guid contactId, Guid userId)
+        {
+            var all = await repository.GetAllByContactId(contactId);
+
             return all.Where(x => x.UserId == userId);
         }
 

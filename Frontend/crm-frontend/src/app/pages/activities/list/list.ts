@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivityService } from '../../../services/activity.service';
-import { Activity } from '../../../models/activity.model';
+import { Activity, FullActivity } from '../../../models/activity.model';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,7 @@ export class List {
   private activityService = inject(ActivityService)
   private router = inject(Router)
 
-  activities : Activity[] = []
+  activities : FullActivity[] = []
 
   ngOnInit(){
     this.activityService.getAll().subscribe(res =>

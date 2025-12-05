@@ -22,7 +22,7 @@ export class Details {
   contacts: Contact[] = []
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id')
+    const id = this.route.snapshot.paramMap.get('companyId')
     if (!id) return
 
     this.companyService.getById(id).subscribe(company => {

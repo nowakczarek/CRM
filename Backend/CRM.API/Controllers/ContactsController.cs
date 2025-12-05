@@ -46,7 +46,7 @@ namespace CRM.Api.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        public async Task<ActionResult<ContactDto>> GetById(Guid id)
+        public async Task<ActionResult<ContactWithCompanyDto>> GetById(Guid id)
         {
             var userId = GetUserId();
             var contact = await contactService.GetByIdAsync(id, userId);
@@ -56,7 +56,7 @@ namespace CRM.Api.Controllers
                 return NotFound();
             }
 
-            return Ok(contact.ToDto());
+            return Ok(contact.ToDtoWithCompany());
         }
 
         [HttpPost]

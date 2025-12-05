@@ -30,7 +30,7 @@
     </thead>
     <tbody>
         @for (contact of contacts; track contact.id) {
-            <tr class="table-row">
+            <tr class="table-row" (click)="goToDetails(contact.id)">
                 <td>
                     <div class="avatar">{{contact.firstName.charAt(0).toUpperCase()}}{{contact.lastName.charAt(0).toUpperCase()}}</div>
                 </td>
@@ -45,7 +45,7 @@
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.phoneNumber }}</td>
                 <td>{{ contact.position }}</td>
-                <td>{{ contact.createdAt | date: 'yyyy-MM-dd'}}</td>
+                <td>{{ contact.createdAt | date: 'dd-MM-yyyy'}}</td>
                 <td>
                     <button class="btn-secondary" (click)="editContact(contact.id)">
                         Edit
