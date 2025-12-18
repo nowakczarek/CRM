@@ -10,8 +10,8 @@
 }
 
 .sidebar {
-  width: 250px;
-  background: #2b2d3f;
+  width: 12rem;
+  background: #202022;
   color: white;
   padding: 10px;
   display: flex;
@@ -20,9 +20,9 @@
 }
 
 .logo {
-  margin-bottom: 20px;
-  font-size: 22px;
-  margin-left: 8px;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  margin-left: 0.6rem;
 }
 
 .sidebar nav a {
@@ -37,16 +37,15 @@
 
 .sidebar nav a:hover,
 .sidebar nav a.active {
-  background: #374151;
+  background: #303336;
   color: white;
 }
-
 
 .main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: #d1d5db;
+  background-color: #a3a1a1;
 }
 
 .content {
@@ -57,34 +56,49 @@
 
 .topbar{
   display: flex;
-  background: #374151;
+  background: #282829;
   color: #d1d5db;
   align-items: center;
   justify-content: space-between;
+  height: 4rem;
+  padding: 0 1rem;
 }
 
 .topbar h2{
+  margin: 0;
   padding-left: 1rem;
 }
 
-.topbar-btn {
-  background: #23272e;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor:pointer;
-  padding: 0.5rem;
-  margin-right: 0.5rem;
+.topbar-btn:hover {
+  background: #42454b;
 }
 
-.topbar-btn:hover {
-  background: #374151;
+.search-container{
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .search-bar{
-  padding: 0.5rem;
+  padding: 0 0.8rem;
+  height: 2rem;
   border-radius: 0.5rem;
   margin-right: 0.5rem;
   width: 20rem;
   border: none;
+  display: flex;
+  align-items: center;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.topbar button[mat-icon-button] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
