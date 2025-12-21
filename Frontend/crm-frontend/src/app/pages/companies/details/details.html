@@ -1,35 +1,81 @@
-<h2>{{ company.name }}</h2>
+<div class="page-container">
+  <mat-card class="company-card">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>business</mat-icon>
+      </div>
+      <mat-card-title>{{ company.name }}</mat-card-title>
+      <mat-card-subtitle>{{ company.industry }}</mat-card-subtitle>
+      <span class="spacer"></span>
+      <button mat-stroked-button color="primary" (click)="editCompany()">
+        <mat-icon>edit</mat-icon> Edit
+      </button>
+    </mat-card-header>
 
-<p><strong>Industry:</strong> {{ company.industry }}</p>
-<p><strong>NIP:</strong> {{ company.nip }}</p>
-<p><strong>Website:</strong> {{ company.website }}</p>
-<p><strong>Phone:</strong> {{ company.phoneNumber }}</p>
-<p><strong>Address:</strong> {{ company.address }}</p>
+    <mat-card-content class="info-grid">
+      <div class="info-item">
+        <mat-icon>fingerprint</mat-icon>
+        <div><label>NIP</label><span>{{ company.nip }}</span></div>
+      </div>
+      <div class="info-item">
+        <mat-icon>language</mat-icon>
+        <div><label>Website</label>{{ company.website }}</div>
+      </div>
+      <div class="info-item">
+        <mat-icon>phone</mat-icon>
+        <div><label>Phone</label><span>{{ company.phoneNumber }}</span></div>
+      </div>
+      <div class="info-item">
+        <mat-icon>place</mat-icon>
+        <div><label>Address</label><span>{{ company.address }}</span></div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 
-<button (click)="editCompany()">Edit Company</button>
+  <div class="details-grid">
+    <mat-card class="list-card">
+      <mat-toolbar color="transparent">
+        <span>Contacts</span>
+        <span class="spacer"></span>
+        <button mat-icon-button color="primary" (click)="addContact()">
+          <mat-icon>person_add</mat-icon>
+        </button>
+      </mat-toolbar>
+      
+      <mat-card-content>
+        <div class="custom-table">
+          <header class="table-row head">
+            <span>Name</span>
+            <span>Position</span>
+            <span class="action-cell"></span>
+          </header>
+          @for (contact of contacts; track contact.id) {
+            <div class="table-row clickable" (click)="goToContact(contact.id)">
+              <span class="bold">{{ contact.firstName }} {{ contact.lastName }}</span>
+              <span class="text-secondary">{{ contact.position }}</span>
+              <span class="action-cell">
+                <mat-icon>chevron_right</mat-icon>
+              </span>
+            </div>
+          } @empty {
+            <p class="empty-state">No contacts found.</p>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
 
-<hr>
+    <mat-card class="list-card">
+      <mat-toolbar color="transparent">
+        <span>Active Leads</span>
+        <span class="spacer"></span>
+        <button mat-icon-button color="accent">
+          <mat-icon>add_chart</mat-icon>
+        </button>
+      </mat-toolbar>
 
-<h3>Contacts</h3>
-
-<button (click)="addContact()">Add Contact</button>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th></th>
-  </tr>
-@for (contact of contacts; track contact.id) {
-    <tr>
-        <td>{{ contact.firstName }} {{ contact.lastName }}</td>
-        <td>{{ contact.email }}</td>
-        <td>{{ contact.phoneNumber }}</td>
-        <td>
-        <button (click)="goToContact(contact.id)">View</button>
-        </td>
-    </tr>
-}
-
-</table>
+      <mat-card-content>
+        
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

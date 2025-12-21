@@ -4,10 +4,14 @@ import { ContactService } from '../../../services/contact.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Company } from '../../../models/company.model';
 import { Contact } from '../../../models/contact.model';
+import { MatCardModule } from "@angular/material/card";
+import { MatButton } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-details',
-  imports: [],
+  imports: [MatCardModule, MatButton, MatIconModule, MatToolbarModule],
   standalone: true,
   templateUrl: './details.html',
   styleUrl: './details.css'

@@ -2,11 +2,16 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyService } from '../../../services/company.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule],
   templateUrl: './form.html',
   styleUrl: './form.css'
 })
@@ -43,7 +48,7 @@ export class Form {
 
     if(this.editing && this.id){
       this.companyService.update(this.id, this.companyForm.getRawValue()).subscribe(() => {
-        this.router.navigate(['/companies'])
+        this.router.navigate([`/companies/${this.id}`])
       })
     } else {
       this.companyService.create(this.companyForm.getRawValue()).subscribe(() => {

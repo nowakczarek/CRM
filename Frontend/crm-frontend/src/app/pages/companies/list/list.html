@@ -1,51 +1,85 @@
-<h2 class="title">Companies</h2>
+<div class="page-container">
 
-<div class="actions">
-  <button class="btn-primary" (click)="newCompany()">+ New Company</button>
-</div>
+  <mat-card class="company-card">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>business</mat-icon>
+      </div>
+      <mat-card-title class="page-title">Companies</mat-card-title>
+      <mat-card-subtitle class="page-subtitle">Manage your partners</mat-card-subtitle>
+      <span class="spacer"></span>
+      <button mat-flat-button color="primary" (click)="newCompany()">
+        <mat-icon>add</mat-icon> Add
+      </button>
+    </mat-card-header>
+  </mat-card>
 
-<table class="company-table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Industry</th>
-      <th>NIP</th>
-      <th>Website</th>
-      <th>Phone</th>
-      <th>Address</th>
-      <th>Created</th>
-      <th></th>
-    </tr>
-  </thead>
+  <mat-card class="table-card">
+    <div class="custom-table">
+      <div class="table-row header-row">
+        <span class="col-name">Name</span>
+        <span class="col-industry">Industry</span>
+        <span class="col-contact">Contact Info</span>
+        <span class="col-date">Created</span>
+        <span class="col-actions"></span>
+      </div>
 
-  <tbody>
-    @for (company of companies; track company.id) {
-      <tr class="table-row" (click)="goToCompany(company.id)">
-        <td>{{ company.name }}</td>
-        <td>{{ company.industry }}</td>
-        <td>{{ company.nip }}</td>
-
-        <td>
-            @if(company.website){
-                <a [href]="company.website"
-                target="_blank"
-                class="link">
-                {{ company.website }}
-          </a>
-            }
+      @for (company of companies; track company.id) {
+        <div class="table-row data-row" (click)="goToCompany(company.id)">
           
-        </td>
+          <div class="col-name cell-with-avatar">
+            <div class="company-avatar">
+              {{ company.name.charAt(0).toLocaleUpperCase() }}
+            </div>
+            <div class="name-info">
+              <span class="primary-text">{{ company.name }}</span>
+              <span class="secondary-text">NIP: {{ company.nip }}</span>
+            </div>
+          </div>
 
-        <td>{{ company.phoneNumber }}</td>
-        <td>{{ company.address }}</td>
-        <td>{{ company.createdAt | date: 'dd-MM-yyyy' }}</td>
+          <div class="col-industry">
+            <span class="industry-badge">{{ company.industry }}</span>
+          </div>
 
-        <td>
-          <button class="btn-secondary" (click)="editCompany(company.id)">
-            Edit
-          </button>
-        </td>
-      </tr>
-    }
-  </tbody>
-</table>
+          <div class="col-contact">
+            <div class="contact-details">
+              @if(company.website) {
+                <a [href]="company.website" target="_blank" (click)="$event.stopPropagation()" class="icon-link">
+                  <mat-icon>language</mat-icon> {{ company.website }}
+                </a>
+              }
+              <span class="icon-text">
+                <mat-icon>phone</mat-icon> {{ company.phoneNumber }}
+              </span>
+            </div>
+          </div>
+
+          <div class="col-date secondary-text">
+            {{ company.createdAt | date: 'dd MMM yyyy' }}
+          </div>
+
+          <div class="col-actions">
+            <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="editCompany(company.id)">
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+              </button>
+              <button mat-menu-item class="delete-action">
+                <mat-icon color="warn">delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+      } @empty {
+        <div class="empty-state">
+          <mat-icon>business_off</mat-icon>
+          <p>No companies found. Add your first client to get started.</p>
+        </div>
+      }
+    </div>
+  </mat-card>
+</div>

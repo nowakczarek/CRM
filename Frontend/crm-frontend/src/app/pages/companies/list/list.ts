@@ -3,10 +3,14 @@ import { CompanyService } from '../../../services/company.service';
 import { Router } from '@angular/router';
 import { Company } from '../../../models/company.model';
 import { DatePipe } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from "@angular/material/button";
 
 @Component({
   selector: 'app-list',
-  imports: [DatePipe],
+  imports: [DatePipe, MatIconModule, MatCardModule, MatMenuModule, MatButtonModule],
   standalone: true,
   templateUrl: './list.html',
   styleUrl: './list.css'
