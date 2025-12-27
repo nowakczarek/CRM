@@ -3,12 +3,12 @@
         <h2 class="logo">CRM</h2>
         <form class="search-container">
             <input class="search-bar">
-            <button mat-icon-button>
-                <mat-icon svgIcon="search_icon.svg"></mat-icon>
+            <button mat-icon-button class="topbar-btn">
+                <mat-icon>search</mat-icon>
             </button>
         </form>
-        <button mat-icon-button (click)="logout()">
-            <mat-icon svgIcon="logout_icon.svg"></mat-icon>
+        <button mat-icon-button class="topbar-btn" (click)="logout()">
+            <mat-icon>logout</mat-icon>
         </button>
     </header>
     
