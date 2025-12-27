@@ -17,7 +17,7 @@ namespace CRM.Application.Mappers
                 company.Industry,
                 company.NIP,
                 company.Website,
-                company.Website,
+                company.PhoneNumber,
                 company.Address,
                 company.CreatedAt
                 );

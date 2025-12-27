@@ -1,44 +1,69 @@
-<h2 class="title">Activities</h2>
+<div class="page-container">
 
-<div class="actions">
-  <button class="btn-primary" (click)="create()">+ New Company</button>
+  <mat-card class="company-card">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>work_history</mat-icon>
+      </div>
+      <mat-card-title class="page-title">Last Activities</mat-card-title>
+      <mat-card-subtitle class="page-subtitle">Manage your activities</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+
+  <mat-card class="table-card">
+    <div class="custom-table">
+      <div class="table-row header-row">
+        <span>Contact</span>
+        <span>Company</span>
+        <span>Subject</span>
+        <span>Created</span>
+        <span></span>
+      </div>
+
+      @for (activity of activities; track activity.id) {
+        <div class="table-row data-row">
+          
+          <div class="cell-with-avatar">
+            <div class="company-avatar">
+              {{ activity.contactFirstName.charAt(0).toLocaleUpperCase() }}{{ activity.contactLastName.charAt(0).toLocaleUpperCase() }}
+            </div>
+            <div>
+                <span>{{activity.contactFirstName}} {{activity.contactLastName}}</span>
+            </div>
+          </div>
+
+          <div>
+              <span>{{ activity.companyName }}</span>
+          </div>
+          <div>
+            <span>{{activity.subject}}</span>
+          </div>
+
+          <div class="col-date secondary-text">
+            {{ activity.createdAt | date: 'dd MMM yyyy' }}
+          </div>
+
+          <div>
+            <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="editActivity(activity.id)">
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+              </button>
+              <button mat-menu-item class="delete-action">
+                <mat-icon color="warn">delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+      } @empty {
+        <div class="empty-state">
+          <p>No activities found. Add your first activity to get started.</p>
+        </div>
+      }
+    </div>
+  </mat-card>
 </div>
-
-<table class="company-table">
-    <thead>
-        <tr>
-            <th>Company</th>
-            <th>Person</th>
-            <th>Subject</th>
-            <th>Description</th>
-            <th>CreatedAt</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (activity of activities; track activity.id) {
-            <tr class="table-row">
-                <td>
-                    <a class="company-link"
-                        (click)="goToCompany(activity.companyId)">
-                        {{ activity.companyName }}
-                    </a>
-                </td>
-                <td>
-                    <a class="company-link"
-                        (click)="goToContact(activity.contactId)">
-                        {{ activity.contactFirstName }} {{ activity.contactLastName }}
-                    </a>
-                </td>
-                <td>{{ activity.subject }}</td>
-                <td>{{ activity.description }}</td>
-                <td>{{ activity.createdAt | date: 'dd-MM-yyyy'}}</td>
-                <td>
-                    <button class="btn-secondary" (click)="editActivity(activity.id)">
-                        Edit
-                    </button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>

@@ -6,10 +6,12 @@ import { ActivityType } from '../../../models/enums/activity-type';
 import { MatFormField, MatSelectModule } from '@angular/material/select';
 import { MatInput } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule, MatSelectModule, MatFormField, MatInput, MatButtonModule],
+  imports: [ReactiveFormsModule, MatSelectModule, MatFormField, MatInput, MatButtonModule, MatCardModule, MatIconModule],
   templateUrl: './form.html',
   styleUrl: './form.css'
 })

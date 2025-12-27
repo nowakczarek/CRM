@@ -1,25 +1,28 @@
-.container {
-  margin: auto;
-  padding: 2rem;
+.page-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0 auto;
 }
 
 .header {
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
   align-items: center;
 }
 
 .avatar {
-  width: 4rem;
-  height: 4rem;
-  background: #4b5563;
-  color: white;
-  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  background: #d8d8d8;
+  color: #5c5c5c;
+  border-radius: 4rem;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 1.6rem;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 2rem;
 }
 
 .header-info h2 {
@@ -53,4 +56,141 @@
 
 .activity-card {
   margin-bottom: 1rem;
+}
+
+
+.profile-header-card {
+  margin-bottom: 2rem;
+  border-radius: 1rem !important;
+  border-left: 0.4rem solid #303336 !important;
+}
+
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem !important;
+}
+
+.profile-main {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.contact-name {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0;
+  color: #111827;
+}
+
+.position-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+.position-tag mat-icon {
+  font-size: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 1rem !important;
+}
+
+.detail-item label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #9ca3af;
+  letter-spacing: 0.05rem;
+  margin-bottom: 0.25rem;
+}
+
+.detail-item .value {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.detail-item mat-icon {
+  color: #9ca3af;
+  font-size: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.clickable-link {
+  color: #3f51b5;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.clickable-link:hover { text-decoration: underline; }
+
+/* Timeline Section */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  border-left: 2px solid #e5e7eb;
+  margin-left: 1rem;
+  margin-top: 2rem;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: -3.1rem;
+  top: 0.5rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.timeline-icon mat-icon {
+  font-size: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.timeline-card {
+  border-radius: 0.75rem !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+}
+
+.description {
+  color: #4b5563;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }

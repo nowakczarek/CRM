@@ -1,57 +1,101 @@
-<h2 class="title">Contacts</h2>
+<div class="page-container">
 
-<div class="toolbar">
-    <select [(ngModel)]="selectedCompanyId" class="company-select">
-        <option value="">-- Choose Company --</option>
+  <mat-card class="company-card">
+    <mat-card-header>
+      
+      <div mat-card-avatar>
+        <mat-icon>person</mat-icon>
+      </div>
+      <mat-card-title class="page-title">Contacts</mat-card-title>
+      <mat-card-subtitle class="page-subtitle">Manage your business contacts</mat-card-subtitle>
+      
+      <span class="spacer"></span>
+      <div class="add-contact">
+        <mat-form-field appearance="outline" class="company-selector">
+            <mat-label>Select Company</mat-label>
+            <mat-select [(ngModel)]="selectedCompanyId">
+            @for (company of companies; track company.id) {
+                <mat-option [value]="company.id">{{ company.name }}</mat-option>
+            }
+            </mat-select>
+        </mat-form-field>
 
-        @for (company of companies; track company.id) {
-            <option [value]="company.id">
-                {{ company.name }}
-            </option>
-        }
-    </select>
+        <button mat-flat-button 
+                color="primary" 
+                (click)="newContact()" 
+                [disabled]="!selectedCompanyId"
+                class="add-btn">
+            <mat-icon>add</mat-icon> Add Contact
+        </button>
+      </div>
+      
+    </mat-card-header>
+  </mat-card>
 
-    <button class="btn-primary" (click)="newContact()">+ Add Contact</button>
+  <mat-card class="table-card">
+    <div class="custom-table">
+      <div class="table-row header-row">
+        <span class="col-name">Name</span>
+        <span class="col-industry">Position</span>
+        <span class="col-contact">Contact Info</span>
+        <span class="col-date">Created</span>
+        <span class="col-actions"></span>
+      </div>
+
+      @for (contact of contacts; track contact.id) {
+        <div class="table-row data-row" (click)="goToDetails(contact.id)">
+          
+          <div class="col-name cell-with-avatar">
+            <div class="company-avatar">
+              {{ contact.firstName.charAt(0).toLocaleUpperCase() }}{{ contact.lastName.charAt(0).toLocaleUpperCase() }}
+            </div>
+            <div class="name-info">
+              <span class="primary-text">{{ contact.firstName }}{{ contact.lastName }}</span>
+              <span class="secondary-text" (click)="goToCompany(contact.companyId)">Company: {{ contact.companyName }}</span>
+            </div>
+          </div>
+
+          <div class="col-industry">
+            <span class="industry-badge">{{ contact.position }}</span>
+          </div>
+
+          <div class="col-contact">
+            <div class="contact-details">
+              <span class="icon-text">
+                <mat-icon>phone</mat-icon> {{ contact.phoneNumber }}
+              </span>
+              <span class="icon-text">
+                <mat-icon>email</mat-icon> {{ contact.email }}
+              </span>
+            </div>
+          </div>
+
+          <div class="col-date secondary-text">
+            {{ contact.createdAt | date: 'dd MMM yyyy' }}
+          </div>
+
+          <div>
+            <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="editContact(contact.id)">
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+              </button>
+              <button mat-menu-item class="delete-action">
+                <mat-icon color="warn">delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+      } @empty {
+        <div class="empty-state">
+          <mat-icon>business_off</mat-icon>
+          <p>No contacts found. Add your first client to get started.</p>
+        </div>
+      }
+    </div>
+  </mat-card>
 </div>
-
-<table class="company-table">
-    <thead>
-        <tr>
-            <th></th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Company</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Position</th>
-            <th>Created</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (contact of contacts; track contact.id) {
-            <tr class="table-row" (click)="goToDetails(contact.id)">
-                <td>
-                    <div class="avatar">{{contact.firstName.charAt(0).toUpperCase()}}{{contact.lastName.charAt(0).toUpperCase()}}</div>
-                </td>
-                <td>{{ contact.firstName }}</td>
-                <td>{{ contact.lastName }}</td>
-                <td>
-                    <a class="company-link"
-                        (click)="goToCompany(contact.companyId)">
-                        {{ contact.companyName }}
-                    </a>
-                </td>
-                <td>{{ contact.email }}</td>
-                <td>{{ contact.phoneNumber }}</td>
-                <td>{{ contact.position }}</td>
-                <td>{{ contact.createdAt | date: 'dd-MM-yyyy'}}</td>
-                <td>
-                    <button class="btn-secondary" (click)="editContact(contact.id)">
-                        Edit
-                    </button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>

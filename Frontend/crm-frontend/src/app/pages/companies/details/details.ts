@@ -47,7 +47,7 @@ export class Details {
   }
 
   goToContact(id: string){
-    this.router.navigate(['contacts', id])
+    this.router.navigate(['companies', this.company.id, 'contacts', id])
   }
 
 }

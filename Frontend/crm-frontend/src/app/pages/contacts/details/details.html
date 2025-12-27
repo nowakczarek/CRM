@@ -1,57 +1,105 @@
-<div class="container">
-
-    <div class="header">
+<div class="page-container">
+  <mat-card class="profile-header-card">
+    <mat-card-content class="header-flex">
+      <div class="profile-main">
         <div class="avatar">
-            <span>{{ contact.firstName.charAt(0) }}{{ contact.lastName.charAt(0) }}</span>
+          {{ contact.firstName.charAt(0) }}{{ contact.lastName.charAt(0) }}
         </div>
+        <div class="name-meta">
+          <h1 class="contact-name">{{ contact.firstName }} {{ contact.lastName }}</h1>
+          <div class="position-tag">
+            <mat-icon>work_outline</mat-icon>
+            <span>{{ contact.position }} at <strong>{{ contact.companyName }}</strong></span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <button mat-flat-button color="primary" (click)="editContact()">
+          <mat-icon>edit</mat-icon> Edit Profile
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
 
-        <div class="header-info">
-            <h2>{{ contact.firstName }} {{ contact.lastName }}</h2>
-            <div class="subtitle">{{ contact.position }} at {{ contact.companyName }}</div>
-
-            <div class="header-actions">
-                <button mat-raised-button color="primary" (click)="editContact()">Edit</button>
-                <button mat-stroked-button (click)="goBack()">Back</button>
+  <div class="content-grid">
+    <div>
+      <mat-card>
+        <mat-toolbar color="transparent">
+          <span>Contact Details</span>
+        </mat-toolbar>
+        
+        <mat-card-content class="details-list">
+          <div class="detail-item">
+            <label>Email Address</label>
+            <div class="value">
+              <mat-icon>email</mat-icon>
+              <a [href]="'mailto:' + contact.email">{{ contact.email || '—' }}</a>
             </div>
-        </div>
+          </div>
+
+          <div class="detail-item">
+            <label>Phone Number</label>
+            <div class="value">
+              <mat-icon>phone</mat-icon>
+              <span>{{ contact.phoneNumber || '—' }}</span>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <label>Company</label>
+            <div class="value">
+              <mat-icon>business</mat-icon>
+              <a (click)="goToCompany()" class="clickable-link">{{ contact.companyName || '—' }}</a>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <label>Member Since</label>
+            <div class="value">
+              <mat-icon>calendar_today</mat-icon>
+              <span>{{ contact.createdAt | date: 'dd MMM yyyy' }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </div>
-
-    <div class="content-grid">
-
-        <div class="left-column">
-            <mat-card>
-                <mat-card-title>Contact Information</mat-card-title>
-                <mat-card-content>
-                    <p><strong>Company:</strong> {{ contact.companyName || '—' }}</p>
-                    <p><strong>Email:</strong> {{ contact.email || '—' }}</p>
-                    <p><strong>Phone:</strong> {{ contact.phoneNumber || '—' }}</p>
-                    <p><strong>Position:</strong> {{ contact.position || '—' }}</p>
-                    <p><strong>Created:</strong> {{ contact.createdAt | date: 'dd-MM-yyyy' }}</p>
-                </mat-card-content>
-            </mat-card>
-        </div>
-
-        <div class="right-column">
-            <div class="activities-header">
-                <h3>Activities</h3>
-                <button mat-raised-button color="primary" (click)="addActivity()">
-                + Add Activity
-                </button>
-            </div>
-
-            @for (activity of activities; track activity.id) {
-                <mat-card class="activity-card">
-                    <mat-card-title>{{ activity.subject }}</mat-card-title>
-                    <mat-card-subtitle>
-                        {{ activity.type }} - {{ activity.createdAt | date:'dd-MM-yyyy' }}
-                    </mat-card-subtitle>
-                    <mat-card-content>
-                        <p>{{ activity.description }}</p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <button mat-button (click)="editActivity(activity.id)">Edit</button>
-                    </mat-card-actions>
-                </mat-card>
-                }
+    <div class="right-column">
+        <mat-toolbar color="transparent" class="section-header">
+          <span>Activity Timeline</span>
+          <button mat-flat-button color="accent" (click)="addActivity()">
+            <mat-icon>add</mat-icon> Add Activity
+          </button>
+        </mat-toolbar>
+      
+      <div class="timeline">
+          @for (activity of activities; track activity.id) {
+          <div class="timeline-item">
+              <div class="timeline-icon">
+              <mat-icon>{{ getActivityIcon(activity.type) }}</mat-icon>
+              </div>
+              <mat-card class="timeline-card">
+              <mat-card-header>
+                  <mat-card-title>{{ activity.subject }}</mat-card-title>
+                  <mat-card-subtitle>
+                  {{ getActivityTypeName(activity.type) }} • {{ activity.createdAt | date:'MMM dd, yyyy HH:mm' }}
+                  </mat-card-subtitle>
+                  <span class="spacer"></span>
+                  <button mat-icon-button (click)="editActivity(activity.id)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+              </mat-card-header>
+              <mat-card-content>
+                  <p class="description">{{ activity.description }}</p>
+              </mat-card-content>
+              </mat-card>
+          </div>
+          } @empty {
+          <div class="empty-timeline">
+              <mat-icon>history</mat-icon>
+              <p>No activities recorded yet.</p>
+          </div>
+          }
+      </div>
     </div>
 </div>

@@ -17,11 +17,11 @@
   <mat-card class="table-card">
     <div class="custom-table">
       <div class="table-row header-row">
-        <span class="col-name">Name</span>
-        <span class="col-industry">Industry</span>
-        <span class="col-contact">Contact Info</span>
-        <span class="col-date">Created</span>
-        <span class="col-actions"></span>
+        <span>Name</span>
+        <span>Industry</span>
+        <span>Contact Info</span>
+        <span>Created</span>
+        <span></span>
       </div>
 
       @for (company of companies; track company.id) {
@@ -41,7 +41,7 @@
             <span class="industry-badge">{{ company.industry }}</span>
           </div>
 
-          <div class="col-contact">
+          <div>
             <div class="contact-details">
               @if(company.website) {
                 <a [href]="company.website" target="_blank" (click)="$event.stopPropagation()" class="icon-link">
@@ -58,7 +58,7 @@
             {{ company.createdAt | date: 'dd MMM yyyy' }}
           </div>
 
-          <div class="col-actions">
+          <div>
             <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
               <mat-icon>more_vert</mat-icon>
             </button>

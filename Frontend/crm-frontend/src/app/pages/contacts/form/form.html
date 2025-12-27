@@ -1,39 +1,63 @@
-<h2 class="title">{{ editing ? 'Edit Contact' : 'Create Contact' }}</h2>
+<div class="form-container">
+    
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title class="form-title">
+        {{ editing ? 'Edit Contact' : 'Create New Contact' }}
+      </mat-card-title>
+      <mat-card-subtitle>Enter the contact details below</mat-card-subtitle>
+    </mat-card-header>
 
-<form [formGroup]="contactForm" (ngSubmit)="save()" class="form">
-    <div class="form-group">
-        <label>First Name<span class="required">*</span></label>
-        <input type="text" formControlName="firstName">
-        @if(contactForm.get('firstName')?.touched && contactForm.get('firstName')?.invalid){
-        <div class="error">
-            First Name is required.
-        </div>
-        }
-    </div>
-    <div class="form-group">
-        <label>Last Name<span class="required">*</span></label>
-        <input type="text" formControlName="lastName">
-        @if(contactForm.get('lastName')?.touched && contactForm.get('lastName')?.invalid){
-        <div class="error">
-            Last Name is required.
-        </div>
-        }
-    </div>
-    <div class="form-group">
-        <label>Email</label>
-        <input type="text" formControlName="email">
-    </div>
-    <div class="form-group">
-        <label>Phone Number</label>
-        <input type="text" formControlName="phoneNumber">
-    </div>
-    <div class="form-group">
-        <label>Position</label>
-        <input type="text" formControlName="position">
-    </div>
-    <div class="actions">
-        <button type="submit" class="btn primary" [disabled]="contactForm.invalid">{{editing ? 'Update' : 'Create'}}</button>
+    <mat-card-content>
+        <form [formGroup]="contactForm" (ngSubmit)="save()" class="form">
 
-        <button type="button" class="btn" (click)="cancel()">Cancel</button>
-    </div>
-</form>
+            <div class="form-row">
+                <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="firstName">
+                    @if (contactForm.get('firstName')?.hasError('required')) {
+                    <mat-error>First name is <strong>required</strong></mat-error>
+                    }
+                </mat-form-field>
+            
+                <mat-form-field appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lastName">
+                    @if (contactForm.get('lastName')?.hasError('required')){
+                        <mat-error>Last name is <strong>required</strong></mat-error>
+                    }
+                </mat-form-field>
+            </div>
+
+            <div class="form-row">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email">
+                    <mat-icon matPrefix>mail</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput formControlName="phoneNumber">
+                    <mat-icon matPrefix>phone</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="form-row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Position</mat-label>
+                    <input matInput formControlName="position">
+                </mat-form-field>
+
+                <div class="form-actions">
+                    <button mat-button type="button" (click)="cancel()">Cancel</button>
+                    <button mat-flat-button color="primary" type="submit" [disabled]="contactForm.invalid">
+                        <mat-icon>{{ editing ? 'save' : 'add' }}</mat-icon>
+                        {{ editing ? 'Update Company' : 'Create Company' }}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+  </mat-card>
+</div>

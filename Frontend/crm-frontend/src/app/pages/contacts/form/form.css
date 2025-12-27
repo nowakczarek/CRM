@@ -1,66 +1,51 @@
-.title {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
+.form-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 45rem;
+  border-radius: 0.75rem !important;
+  border-top: 0.3rem solid #303336 !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.form-title {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem !important;
 }
 
 .form {
-  max-width: 600px;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
-.form-group {
+.full-width {
+  width: 100%;
+}
+
+.form-actions {
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-label {
-  font-weight: 500;
-}
-
-.required {
-  color: red;
-}
-
-input, textarea {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-}
-
-textarea {
-  resize: vertical;
-  min-height: 70px;
-}
-
-.error {
-  font-size: 0.85rem;
-  color: #d9534f;
-}
-
-.actions {
-  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 0.5rem;
   gap: 1rem;
-  margin-top: 1rem;
+  border-top: 1px solid #f3f4f6;
 }
 
-.btn {
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-}
-
-.btn.primary {
-  background: #3b82f6;
-  color: white;
-}
-
-.btn.primary:disabled {
-  background: #9bbffa;
-  cursor: not-allowed;
+mat-icon[matPrefix] {
+  margin-right: 0.5rem;
+  color: #9ca3af;
+  transform: scale(0.8);
 }

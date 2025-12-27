@@ -1,4 +1,55 @@
-.buttons-row{
-    display: flex;
-    gap: 0.5rem;
+.form-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 45rem;
+  border-radius: 0.75rem !important;
+  border-top: 0.3rem solid #303336 !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.form-title {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+mat-icon[matPrefix] {
+  margin-right: 0.5rem;
+  color: #9ca3af;
+  transform: scale(0.8);
+}
+
+.subject-row{
+    width:100%;
 }

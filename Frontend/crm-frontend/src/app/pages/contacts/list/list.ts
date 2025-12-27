@@ -6,10 +6,16 @@ import { CompanyService } from '../../../services/company.service';
 import { Company } from '../../../models/company.model';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormField } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-list',
-  imports: [FormsModule, DatePipe],
+  imports: [FormsModule, DatePipe, MatIconModule, MatCardModule, MatMenuModule, MatButtonModule, MatFormField, MatSelectModule],
   standalone: true,
   templateUrl: './list.html',
   styleUrl: './list.css'
