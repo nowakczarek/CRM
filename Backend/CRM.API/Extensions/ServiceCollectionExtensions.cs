@@ -23,6 +23,7 @@ namespace CRM.Api.Extensions
 
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IActivityRepository, ActivityRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
 
             return services;
         }

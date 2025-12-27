@@ -21,49 +21,68 @@
       </div>
 
       @for (activity of activities; track activity.id) {
-        <div class="table-row data-row">
-          
-          <div class="cell-with-avatar">
-            <div class="company-avatar">
-              {{ activity.contactFirstName.charAt(0).toLocaleUpperCase() }}{{ activity.contactLastName.charAt(0).toLocaleUpperCase() }}
+        <div>
+          <div class="table-row data-row" (click)="toggleRow(activity.id)">
+            
+            <div class="cell-with-avatar">
+              <div class="company-avatar">
+                {{ activity.contactFirstName.charAt(0).toLocaleUpperCase() }}{{ activity.contactLastName.charAt(0).toLocaleUpperCase() }}
+              </div>
+              <div>
+                  <span>{{activity.contactFirstName}} {{activity.contactLastName}}</span>
+              </div>
+            </div>
+
+            <div class="secondary-text">
+                <span>{{ activity.companyName }}</span>
             </div>
             <div>
-                <span>{{activity.contactFirstName}} {{activity.contactLastName}}</span>
+              <span class="industry-badge">{{activity.subject}}</span>
             </div>
-          </div>
 
-          <div>
-              <span>{{ activity.companyName }}</span>
-          </div>
-          <div>
-            <span>{{activity.subject}}</span>
-          </div>
+            <div class="col-date secondary-text">
+              {{ activity.createdAt | date: 'dd MMM yyyy' }}
+            </div>
 
-          <div class="col-date secondary-text">
-            {{ activity.createdAt | date: 'dd MMM yyyy' }}
-          </div>
-
-          <div>
-            <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="editActivity(activity.id)">
-                <mat-icon>edit</mat-icon>
-                <span>Edit</span>
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
+                <mat-icon>more_vert</mat-icon>
               </button>
-              <button mat-menu-item class="delete-action">
-                <mat-icon color="warn">delete</mat-icon>
-                <span>Delete</span>
-              </button>
-            </mat-menu>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="editActivity(activity.id)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item class="delete-action">
+                  <mat-icon color="warn">delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+
+            @if(expandedActivityId === activity.id){
+              <div class="details-panel">
+                <div class="details-content">
+                  <div class="detail-section">
+                    <label>Type</label>
+                    <p class="subject-text">{{getActivityTypeName(activity.type)}}</p>
+                  </div>
+                  <div class="detail-section">
+                    <label>Description</label>
+                    <p class="description-text">{{activity.description || 'No description'}}</p>
+                  </div>
+                </div>
+              </div>
+            }
           </div>
         </div>
-      } @empty {
-        <div class="empty-state">
-          <p>No activities found. Add your first activity to get started.</p>
-        </div>
-      }
+        } @empty {
+          <div class="empty-state">
+            <mat-icon>work_history</mat-icon>
+            <p>No activities found. Add your first activity to get started.</p>
+          </div>
+        }
+      
     </div>
   </mat-card>
 </div>

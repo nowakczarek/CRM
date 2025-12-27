@@ -50,7 +50,7 @@
               {{ contact.firstName.charAt(0).toLocaleUpperCase() }}{{ contact.lastName.charAt(0).toLocaleUpperCase() }}
             </div>
             <div class="name-info">
-              <span class="primary-text">{{ contact.firstName }}{{ contact.lastName }}</span>
+              <span class="primary-text">{{ contact.firstName }} {{ contact.lastName }}</span>
               <span class="secondary-text" (click)="goToCompany(contact.companyId)">Company: {{ contact.companyName }}</span>
             </div>
           </div>
@@ -92,7 +92,7 @@
         </div>
       } @empty {
         <div class="empty-state">
-          <mat-icon>business_off</mat-icon>
+          <mat-icon>person</mat-icon>
           <p>No contacts found. Add your first client to get started.</p>
         </div>
       }

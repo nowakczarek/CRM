@@ -3,15 +3,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ActivityService } from '../../../services/activity.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivityType } from '../../../models/enums/activity-type';
-import { MatFormField, MatSelectModule } from '@angular/material/select';
-import { MatInput } from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule, MatSelectModule, MatFormField, MatInput, MatButtonModule, MatCardModule, MatIconModule],
+  imports: [ReactiveFormsModule, MatSelectModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatIconModule],
   templateUrl: './form.html',
   styleUrl: './form.css'
 })
@@ -23,7 +24,7 @@ export class Form {
   activityId?: string
   editing = false
 
-  activityTypes = Object.values(ActivityType)
+  activityTypes = Object.values(ActivityType).filter(value => typeof value === 'string')
 
   activityForm = new FormGroup({
     companyId : new FormControl<string>('', {nonNullable: true}),
@@ -59,4 +60,9 @@ export class Form {
   cancel(){
     this.router.navigate(['/activities'])
   }
+
+  getIndexFromName(name: string): number{
+    return ActivityType[name as keyof typeof ActivityType] as number
+  }
+
 }

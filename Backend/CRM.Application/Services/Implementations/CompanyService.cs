@@ -7,9 +7,9 @@ namespace CRM.Application.Services.Implementations
 {
     public class CompanyService : ICompanyService
     {
-        private readonly IRepository<Company> repository;
+        private readonly ICompanyRepository repository;
 
-        public CompanyService(IRepository<Company> repository)
+        public CompanyService(ICompanyRepository repository)
         {
             this.repository = repository;
         }

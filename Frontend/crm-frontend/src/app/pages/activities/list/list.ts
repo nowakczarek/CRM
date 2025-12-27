@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { ActivityType } from '../../../models/enums/activity-type';
 
 @Component({
   selector: 'app-list',
@@ -20,6 +21,8 @@ export class List {
   private router = inject(Router)
 
   activities : FullActivity[] = []
+
+  expandedActivityId: string | null = null
 
   ngOnInit(){
     this.activityService.getAll().subscribe(res =>
@@ -40,7 +43,15 @@ export class List {
   }
 
   goToContact(id : string){
+    this.router.navigate([])
+  }
 
+  getActivityTypeName(id: number): string {
+    return ActivityType[id]
+  }
+
+  toggleRow(id: string){
+    this.expandedActivityId = this.expandedActivityId === id ? null : id
   }
 
 }

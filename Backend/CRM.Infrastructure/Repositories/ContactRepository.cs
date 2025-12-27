@@ -26,6 +26,7 @@ namespace CRM.Infrastructure.Repositories
         {
             return await context.Contacts
                 .Include(c => c.Company)
+                .OrderByDescending(c => c.CreatedAt)
                 .ToListAsync();
         }
 
