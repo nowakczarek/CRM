@@ -1,0 +1,69 @@
+<div class="page-container">
+  <mat-card class="summary-card">
+    <div class="summary-flex">
+      <div class="summary-item">
+        <label>Total Pipeline Value</label>
+        <div class="value-text primary">{{ totalValue }}</div>
+      </div>
+      <div class="v-divider"></div>
+      <div class="summary-item">
+        <label>Active Leads</label>
+        <div class="value-text">{{ leads.length }}</div>
+      </div>
+      <span class="spacer"></span>
+      <button mat-flat-button color="primary" (click)="newLead()">
+        <mat-icon>add_chart</mat-icon> Create Lead
+      </button>
+    </div>
+  </mat-card>
+
+  <mat-card class="table-card">
+    <div class="custom-table">
+      <div class="table-row header-row">
+        <span>Lead / Title</span>
+        <span>Company & Contact</span>
+        <span>Value</span>
+        <span>Stage</span>
+        <span class="col-actions"></span>
+      </div>
+
+      @for (lead of leads; track lead.id) {
+        <div class="table-row data-row" (click)="goToDetails(lead.id)">
+          <div class="lead-info">
+            <span class="primary-text">{{ lead.title }}</span>
+            <span class="secondary-text">Created {{ lead.createdAt | date:'shortDate' }}</span>
+          </div>
+
+          <div class="entity-info">
+            <span class="icon-text"><mat-icon>business</mat-icon> {{ lead.companyName }}</span>
+            <span class="icon-text secondary"><mat-icon>person</mat-icon> {{ lead.contactFirstName }} {{lead.contactLastName}}</span>
+          </div>
+
+          <div class="value-cell">
+            <span class="currency-value">{{ lead.value }}</span>
+          </div>
+
+          <div>
+            <span class="stage-badge" [class]="getStageClass(lead.stage)">
+              {{ getStageName(lead.stage) }}
+            </span>
+          </div>
+
+          <div class="col-actions">
+            <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="editLead(lead.id)">
+                <mat-icon>edit</mat-icon> Edit
+              </button>
+              <button mat-menu-item class="delete-action">
+                <mat-icon color="warn">delete_outline</mat-icon> Delete
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+      }
+    </div>
+  </mat-card>
+</div>

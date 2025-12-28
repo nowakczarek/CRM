@@ -25,6 +25,10 @@ export const routes: Routes = [
             {
                 path: 'activities',
                 loadChildren: () => import('./pages/activities/activities.routes').then(r => r.activitiesRoutes)
+            },
+            {
+                path: 'leads',
+                loadChildren: () => import('./pages/leads/leads.routes').then(r => r.leadsRoutes)
             }
         ]
     }

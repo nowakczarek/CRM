@@ -33,4 +33,17 @@ namespace CRM.Application.DTOs
         decimal Value,
         LeadStage Stage
         );
+
+    public record FullLeadDto(
+        Guid Id,
+        Guid CompanyId,
+        Guid ContactId,
+        string Title,
+        decimal Value,
+        LeadStage Stage,
+        string CompanyName,
+        string ContactFirstName,
+        string ContactLastName,
+        DateTime CreatedAt
+        );
 }

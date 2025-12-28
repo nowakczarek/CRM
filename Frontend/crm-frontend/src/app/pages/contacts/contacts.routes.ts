@@ -13,5 +13,10 @@ export const contactsRoutes : Routes = [
         path: ':contactId/activities',
         loadChildren: () =>
             import('../activities/activities.routes').then(r => r.activitiesRoutes)
+    },
+    {
+        path: ':contactId/leads',
+        loadChildren: () =>
+            import('../leads/leads.routes').then(r => r.leadsRoutes)
     }
 ]

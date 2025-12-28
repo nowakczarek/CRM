@@ -31,7 +31,7 @@ namespace CRM.Api.Controllers
             var userId = GetUserId();
 
             var leads = await leadService.GetAllAsync(userId);
-            return Ok(leads.Select(a => a.ToDto()));
+            return Ok(leads.Select(a => a.ToFullDto()));
         }
 
         [HttpGet("{id:guid}")]

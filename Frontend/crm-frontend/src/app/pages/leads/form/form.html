@@ -1,0 +1,83 @@
+<div class="form-container">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title class="form-title">
+        {{ editing ? 'Edit Lead' : 'New Opportunity' }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{ editing ? 'Modify the existing deal parameters' : 'Start a new sales cycle' }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="leadForm" (ngSubmit)="save()" class="lead-form">
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Lead Title</mat-label>
+          <input matInput formControlName="title">
+          <mat-icon matPrefix>label</mat-icon>
+          @if (leadForm.get('title')?.hasError('required')) {
+            <mat-error>Title is required</mat-error>
+          }
+        </mat-form-field>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Company</mat-label>
+            <mat-select formControlName="companyId">
+              @for (company of companies; track company.id) {
+                <mat-option [value]="company.id">{{ company.name }}</mat-option>
+              }
+            </mat-select>
+            <mat-icon matPrefix>business</mat-icon>
+            @if (leadForm.get('companyId')?.disabled) {
+              <mat-icon matSuffix class="lock-icon" matTooltip="Fixed context">lock</mat-icon>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Primary Contact</mat-label>
+            <mat-select formControlName="contactId">
+              @for (contact of filteredContacts; track contact.id) {
+                <mat-option [value]="contact.id">
+                  {{ contact.firstName }} {{ contact.lastName }}
+                </mat-option>
+              }
+              @if (filteredContacts.length === 0 && !leadForm.get('companyId')?.value) {
+                <mat-option disabled>Select a company first</mat-option>
+              }
+            </mat-select>
+            <mat-icon matPrefix>person</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Expected Value</mat-label>
+            <input matInput type="number" formControlName="value">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Stage</mat-label>
+            <mat-select formControlName="stage">
+              @for (stageName of leadStages; track stageName) {
+                <mat-option [value]="getIndexFromLeadStage(stageName)">
+                  {{ stageName }}
+                </mat-option>
+              }
+            </mat-select>
+            <mat-icon matPrefix>insights</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="form-actions">
+          <button mat-button type="button" (click)="cancel()">Cancel</button>
+          <button mat-flat-button color="primary" type="submit" [disabled]="leadForm.invalid">
+            <mat-icon>{{ editing ? 'save' : 'add_task' }}</mat-icon>
+            {{ editing ? 'Update Lead' : 'Create Lead' }}
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

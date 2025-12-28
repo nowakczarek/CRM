@@ -1,0 +1,89 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background-color: transparent;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 48rem;
+  border-radius: 0.75rem !important;
+  border-top: 0.4rem solid #10b981 !important;
+}
+
+.form-title {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #111827;
+  margin-bottom: 0.25rem !important;
+}
+
+.lead-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-icon[matPrefix] {
+  margin-right: 0.5rem;
+  color: #9ca3af;
+  transform: scale(0.9);
+}
+
+.lock-icon {
+  color: #9ca3af;
+  font-size: 1.1rem;
+  cursor: help;
+}
+
+/* Logic for disabled fields (Contextual Creation) */
+::ng-deep .mat-mdc-form-field.mat-form-field-disabled {
+  opacity: 0.8;
+  background-color: #f9fafb;
+  border-radius: 4px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+button[mat-flat-button] {
+  padding: 0.5rem 2rem;
+  font-weight: 600;
+  border-radius: 0.5rem !important;
+}
+
+button[mat-button] {
+  color: #6b7280;
+}
+
+mat-hint {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+mat-error {
+  font-size: 0.75rem;
+  font-weight: 500;
+}

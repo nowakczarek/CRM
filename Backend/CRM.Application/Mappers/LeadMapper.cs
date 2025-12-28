@@ -42,5 +42,19 @@ namespace CRM.Application.Mappers
             lead.Value = dto.Value;
             lead.Stage = dto.Stage;
         }
+
+        public static FullLeadDto ToFullDto(this Lead lead)
+            => new FullLeadDto(
+                lead.Id,
+                lead.CompanyId,
+                lead.ContactId,
+                lead.Title,
+                lead.Value,
+                lead.Stage,
+                lead.Company.Name,
+                lead.Contact.FirstName,
+                lead.Contact.LastName,
+                lead.CreatedAt
+                );
     }
 }

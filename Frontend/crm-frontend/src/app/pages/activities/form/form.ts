@@ -50,8 +50,6 @@ export class Form {
   }
 
   save(){
-    const payload = this.activityForm.getRawValue()
-    console.log(payload)
     this.activityService.create(this.activityForm.getRawValue()).subscribe(() => {
       this.router.navigate(['activities'])
     })

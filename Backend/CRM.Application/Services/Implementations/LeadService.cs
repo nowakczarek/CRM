@@ -6,9 +6,9 @@ namespace CRM.Application.Services.Implementations
 {
     public class LeadService : ILeadService
     {
-        private readonly IRepository<Lead> repository;
+        private readonly ILeadRepository repository;
 
-        public LeadService(IRepository<Lead> repository)
+        public LeadService(ILeadRepository repository)
         {
             this.repository = repository;
         }
