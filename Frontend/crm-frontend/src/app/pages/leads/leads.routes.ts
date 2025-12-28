@@ -5,5 +5,6 @@ import { Form } from "./form/form";
 
 export const leadsRoutes : Routes = [
     {path: '', component: List, canActivate: [authGuard]},
-    {path: 'new', component: Form, canActivate: [authGuard]}
+    {path: 'new', component: Form, canActivate: [authGuard]},
+    {path: ':id/edit', component: Form, canActivate: [authGuard]}
 ]

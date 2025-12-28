@@ -7,10 +7,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { LeadStage } from '../../../models/enums/lead-stage';
 import { DatePipe } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-list',
-  imports: [MatCardModule, MatIconModule, MatMenuModule, DatePipe],
+  imports: [MatCardModule, MatIconModule, MatMenuModule, DatePipe, MatButtonModule],
   templateUrl: './list.html',
   styleUrl: './list.css'
 })
@@ -20,12 +21,16 @@ export class List {
   private leadService = inject(LeadService)
 
   leads : FullLead[] = []
+  lead!: Lead
   totalValue = 0
 
   ngOnInit(){
-    this.leadService.getAll().subscribe(r =>
+    this.leadService.getAll().subscribe(r =>{
       this.leads = r 
-    )
+      this.leads.forEach(lead => 
+      this.totalValue += lead.value
+      )
+    })
   }
 
   getStageName(stage: LeadStage): string{
@@ -33,7 +38,7 @@ export class List {
   }
 
   getStageClass(stage: LeadStage): string{
-    return 'stage=' + LeadStage[stage].toLocaleLowerCase()
+    return 'stage-' + LeadStage[stage].toLocaleLowerCase()
   }
 
   newLead(){
@@ -41,11 +46,10 @@ export class List {
   }
 
   editLead(id: string){
-
-  }
-
-  goToDetails(id: string){
-
+    this.leadService.getById(id).subscribe(r => {
+      this.lead = r
+      this.router.navigate(['/companies', this.lead.companyId, 'contacts', this.lead.contactId, 'leads', id, 'edit'])
+    })
   }
 
 }

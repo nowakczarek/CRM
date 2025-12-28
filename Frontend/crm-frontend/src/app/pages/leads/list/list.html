@@ -28,15 +28,17 @@
       </div>
 
       @for (lead of leads; track lead.id) {
-        <div class="table-row data-row" (click)="goToDetails(lead.id)">
+        <div class="table-row data-row">
           <div class="lead-info">
             <span class="primary-text">{{ lead.title }}</span>
-            <span class="secondary-text">Created {{ lead.createdAt | date:'shortDate' }}</span>
+            <span class="secondary-text">Created {{ lead.createdAt | date:'dd.MM.yyyy' }}</span>
           </div>
 
           <div class="entity-info">
             <span class="icon-text"><mat-icon>business</mat-icon> {{ lead.companyName }}</span>
-            <span class="icon-text secondary"><mat-icon>person</mat-icon> {{ lead.contactFirstName }} {{lead.contactLastName}}</span>
+            <span class="icon-text secondary">
+              <mat-icon>person</mat-icon> {{ lead.contactFirstName }} {{ lead.contactLastName }}
+            </span>
           </div>
 
           <div class="value-cell">

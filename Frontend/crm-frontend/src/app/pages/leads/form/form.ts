@@ -46,22 +46,20 @@ export class Form {
   })
 
   ngOnInit(){
-    this.loadDropdownData()
-    this.setupLogic()
-
     this.leadForm.get('companyId')?.valueChanges.subscribe(companyId => {
       this.filterContactsByCompany(companyId)
     })
-    
+
+    this.loadDropdownData()
   }
 
   private loadDropdownData() {
-    this.companyService.getAll().subscribe(r => this.companies = r)
-    this.contactService.getAll().subscribe(r => {
-      this.contacts = r
-      if(this.leadForm.get('companyId')?.value){
-        this.filterContactsByCompany(this.leadForm.get('companyId')?.value!)
-      }
+    this.companyService.getAll().subscribe(r => {
+      this.companies = r
+      this.contactService.getAll().subscribe(r => {
+        this.contacts = r
+        this.setupLogic()
+      })
     })
   }
 
@@ -70,7 +68,7 @@ export class Form {
   }
 
   private setupLogic() {
-    this.leadId = this.route.snapshot.paramMap.get('leadId') ?? undefined
+    this.leadId = this.route.snapshot.paramMap.get('id') ?? undefined
     const passedCompanyId = this.route.snapshot.paramMap.get('companyId')
     const passedContactId = this.route.snapshot.paramMap.get('contactId')
 
@@ -79,23 +77,24 @@ export class Form {
       this.leadService.getById(this.leadId).subscribe(r =>
         this.leadForm.patchValue(r)
       )
+      this.leadForm.get('companyId')?.disable()
+      this.leadForm.get('contactId')?.disable()
+
     } else if(passedCompanyId && passedContactId){
       this.leadForm.patchValue({companyId: passedCompanyId, contactId: passedContactId})
       this.leadForm.get('companyId')?.disable()
       this.leadForm.get('contactId')?.disable()
     }
-
   }
 
   save(){
-
     if(this.editing){
       this.leadService.update(this.leadId!, this.leadForm.getRawValue()).subscribe(() =>
-        this.router.navigate([''])
+        this.router.navigate(['/leads'])
       )
     } else {
       this.leadService.create(this.leadForm.getRawValue()).subscribe(() =>
-        this.router.navigate([''])
+        this.router.navigate(['/leads'])
       )
     }
   }
@@ -103,11 +102,9 @@ export class Form {
   cancel(){
     this.router.navigate(['/leads'])
   }
-
   
-getIndexFromLeadStage(name: string): number {
-  return LeadStage[name as keyof typeof LeadStage] as number
-}
-
+  getIndexFromLeadStage(name: string): number {
+    return LeadStage[name as keyof typeof LeadStage] as number
+  }
 
 }

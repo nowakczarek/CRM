@@ -1,58 +1,152 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  margin: 0 auto;
+}
+
 .summary-card {
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
-  border-left: 0.4rem solid #10b981 !important; /* Success Green for money */
+  border-left: 0.4rem solid #10b981 !important; /* Success Green */
 }
 
 .summary-flex {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  padding: 1rem 1.5rem;
 }
 
-.summary-item label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: #6b7280;
-  font-weight: 600;
-}
-
-.value-text {
-  font-size: 1.5rem;
-  font-weight: 800;
-}
-
-.value-text.primary { color: #10b981; }
-
-/* Stage Badges */
-.stage-badge {
-  padding: 0.25rem 0.75rem;
-  border-radius: 2rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-/* Colors based on LeadStage Enum values */
-.stage-new { background: #e0f2fe; color: #0369a1; }     /* Blue */
-.stage-discovery { background: #fef3c7; color: #92400e; } /* Amber */
-.stage-won { background: #dcfce7; color: #166534; }       /* Green */
-.stage-lost { background: #fee2e2; color: #991b1b; }      /* Red */
-
-.currency-value {
-  font-family: 'Roboto Mono', monospace; /* Monospace keeps numbers aligned */
-  font-weight: 700;
-  color: #111827;
-}
-
-.entity-info {
+.summary-item {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
 }
 
-.entity-info mat-icon {
+.summary-item label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: #6b7280;
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+}
+
+.value-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+.value-text.primary {
+  color: #059669;
+}
+
+.v-divider {
+  width: 1px;
+  height: 2.5rem;
+  background-color: #e5e7eb;
+  margin: 0 2.5rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.table-card {
+  border-radius: 0.75rem !important;
+  overflow: hidden;
+}
+
+.custom-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 2.5fr 2fr 1.2fr 1fr 4.5rem; 
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background-color 0.2s;
+}
+
+.header-row {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #4b5563;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.data-row:hover {
+  background-color: #f8fafc;
+}
+
+.lead-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.primary-text {
+  font-weight: 500;
+  color: #111827;
+  font-size: 0.95rem;
+}
+
+.secondary-text {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.entity-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #374151;
+}
+
+.icon-text mat-icon {
+  font-size: 1.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  color: #9ca3af;
+}
+
+.currency-value {
+  font-weight: 700;
+  color: #111827;
   font-size: 1rem;
-  width: 1rem;
-  height: 1rem;
+}
+
+/* 4. Stage Badges (Mapping to Enum) */
+.stage-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+}
+
+.stage-new { background: #e0f2fe; color: #0369a1; }
+.stage-negotiations { background: #fef3c7; color: #92400e; }
+.stage-won { background: #dcfce7; color: #166534; }
+.stage-lost { background: #fee2e2; color: #991b1b; }
+
+.col-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-action span {
+  color: #dc2626;
 }
