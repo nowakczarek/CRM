@@ -1,0 +1,23 @@
+.search-wrapper{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+mat-form-field{
+    margin-top: 0;
+    width: 25rem;
+    max-height: 3.5rem;
+    border: 0;
+}
+
+mat-icon{
+    margin-right: 0.5rem;
+    margin-top: 0.9rem;
+}
+
+input{
+    color: white;
+}
+
+

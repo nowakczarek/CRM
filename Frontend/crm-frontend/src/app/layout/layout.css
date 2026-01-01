@@ -75,23 +75,6 @@
   background: #42454b;
 }
 
-.search-container{
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.search-bar{
-  padding: 0 0.8rem;
-  height: 2rem;
-  border-radius: 0.5rem;
-  margin-right: 0.5rem;
-  width: 20rem;
-  border: none;
-  display: flex;
-  align-items: center;
-}
-
 .logout-btn {
   display: flex;
   align-items: center;
@@ -100,4 +83,8 @@
 
 .topbar-btn{
   color: white;
+}
+
+app-global-search{
+  display: flex;
 }

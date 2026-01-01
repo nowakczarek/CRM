@@ -1,12 +1,7 @@
 <div class="layout">
     <header class="topbar">
         <h2 class="logo">CRM</h2>
-        <form class="search-container">
-            <input class="search-bar">
-            <button mat-icon-button class="topbar-btn">
-                <mat-icon>search</mat-icon>
-            </button>
-        </form>
+        <app-global-search></app-global-search>
         <button mat-icon-button class="topbar-btn" (click)="logout()">
             <mat-icon>logout</mat-icon>
         </button>

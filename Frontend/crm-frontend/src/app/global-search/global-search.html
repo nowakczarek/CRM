@@ -1,0 +1,37 @@
+<div class="search-wrapper">
+    <mat-icon>search</mat-icon>
+    <mat-form-field subscriptSizing="dynamic">
+        <input matInput
+            [formControl]="searchControl"
+            [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+            @if (results?.companies?.length){
+                <mat-optgroup label="Companies">
+                    @for (company of results?.companies; track company.id) {
+                        <mat-option (onSelectionChange)="onSearch('companies', company.id)">
+                            {{company.name}}
+                        </mat-option>
+                    }
+                </mat-optgroup>
+            }
+            @if (results?.contacts?.length) {
+                <mat-optgroup label="Contacts">
+                    @for (contact of results?.contacts; track contact.id) {
+                        <mat-option (onSelectionChange)="onSearch('contacts', contact.id)">
+                            {{ contact.firstName }} {{ contact.lastName }}
+                        </mat-option>
+                    }
+                </mat-optgroup>
+            }
+            @if (results?.leads?.length){
+                <mat-optgroup label="Leads">
+                    @for (lead of results?.leads; track lead.id) {
+                        <mat-option (onSelectionChange)="onSearch('leads', lead.id)">
+                            {{lead.title}} {{lead.value}}
+                        </mat-option>
+                    }
+                </mat-optgroup>
+            }
+        </mat-autocomplete>
+    </mat-form-field>
+</div>
