@@ -13,6 +13,7 @@ namespace CRM.Api.Extensions
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<ILeadService, LeadService>();
+            services.AddScoped<ISearchService, SearchService>();
 
             return services;
         }
@@ -25,6 +26,7 @@ namespace CRM.Api.Extensions
             services.AddScoped<IActivityRepository, ActivityRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ILeadRepository, LeadRepository>();
+            services.AddScoped<ISearchRepository, SearchRepository>();
 
             return services;
         }
