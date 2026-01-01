@@ -50,9 +50,16 @@ export class Form {
   }
 
   save(){
-    this.activityService.create(this.activityForm.getRawValue()).subscribe(() => {
+    if(this.editing){
+      this.activityService.update(this.activityId!, this.activityForm.getRawValue()).subscribe(() => 
+        this.router.navigate(['activities'])
+      )
+    } else {
+      this.activityService.create(this.activityForm.getRawValue()).subscribe(() => {
       this.router.navigate(['activities'])
-    })
+      })
+    }
+    
   }
 
   cancel(){
