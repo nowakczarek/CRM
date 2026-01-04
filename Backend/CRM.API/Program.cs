@@ -25,10 +25,16 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
+    var services = scope.ServiceProvider;
     var db = scope.ServiceProvider.GetRequiredService<CrmDbContext>();
     db.Database.Migrate();
 
-    await IdentitySeeder.SeedAsync(scope.ServiceProvider);
+    if (app.Environment.IsDevelopment())
+    {
+        await IdentitySeeder.SeedAsync(services);
+        await DataSeeder.SeedData(db, services);
+    }
+
 }
 
 // Configure the HTTP request pipeline.
