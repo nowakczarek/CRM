@@ -31,6 +31,7 @@ namespace CRM.Api.Seeding
                .RuleFor(c => c.UserId, user.Id)
                .RuleFor(c => c.Name, f => f.Company.CompanyName())
                .RuleFor(c => c.Industry, f => f.Commerce.Department())
+               .RuleFor(c => c.NIP, f => f.Random.Replace("##########"))
                .RuleFor(c => c.Website, f => f.Internet.Url())
                .RuleFor(c => c.PhoneNumber, f => f.Phone.PhoneNumber("#########"))
                .RuleFor(c => c.Address, f => f.Address.FullAddress())
@@ -80,7 +81,7 @@ namespace CRM.Api.Seeding
                             .RuleFor(a => a.ContactId, contact.Id)
                             .RuleFor(a => a.UserId, user.Id)
                             .RuleFor(a => a.Title, f => f.Lorem.Sentence().TrimEnd('.'))
-                            .RuleFor(a => a.Value, f => f.Random.Decimal(500, 50000))
+                            .RuleFor(a => a.Value, f => Math.Round(f.Random.Decimal(500, 50000), 2))
                             .RuleFor(a => a.Stage, f => f.PickRandom<LeadStage>())
                             .RuleFor(a => a.CreatedAt, f => f.Date.Between(contact.CreatedAt, DateTime.Now));
                         

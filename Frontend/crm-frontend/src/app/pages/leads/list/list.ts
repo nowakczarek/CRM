@@ -23,12 +23,17 @@ export class List {
   leads : FullLead[] = []
   lead!: Lead
   totalValue = 0
+  activeLeads = 0
 
   ngOnInit(){
     this.leadService.getAll().subscribe(r =>{
       this.leads = r 
-      this.leads.forEach(lead => 
-      this.totalValue += lead.value
+      this.leads.forEach(lead =>  {
+        if( lead.stage == LeadStage.New || lead.stage == LeadStage.Negotiations) {
+          this.totalValue += lead.value
+          this.activeLeads += 1
+        }
+      }
       )
     })
   }

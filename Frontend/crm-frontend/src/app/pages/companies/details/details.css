@@ -72,3 +72,39 @@
   background-color: #f8fafc;
   transition: background-color 0.2s ease-in-out;
 }
+
+.lead-grid {
+  grid-template-columns: 2fr 1fr 1.2fr !important;
+  gap: 0.5rem;
+}
+
+.lead-title-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.lead-title-cell small {
+  font-size: 0.75rem;
+  color: #9e9e9e;
+}
+
+.currency-value {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.text-center { text-align: center; }
+.text-end { text-align: right; }
+
+.stage-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.stage-new { background: #e0f2fe; color: #0369a1; }
+.stage-negotiations { background: #fef3c7; color: #92400e; }
+.stage-won { background: #dcfce7; color: #166534; }
+.stage-lost { background: #fee2e2; color: #991b1b; }

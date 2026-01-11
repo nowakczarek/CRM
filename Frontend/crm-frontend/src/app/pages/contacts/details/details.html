@@ -23,8 +23,8 @@
   </mat-card>
 
   <div class="content-grid">
-    <div>
-      <mat-card>
+    <div class="left-column">
+      <mat-card class="details-card">
         <mat-toolbar color="transparent">
           <span>Contact Details</span>
         </mat-toolbar>
@@ -37,7 +37,6 @@
               <a [href]="'mailto:' + contact.email">{{ contact.email || '—' }}</a>
             </div>
           </div>
-
           <div class="detail-item">
             <label>Phone Number</label>
             <div class="value">
@@ -45,21 +44,57 @@
               <span>{{ contact.phoneNumber || '—' }}</span>
             </div>
           </div>
-
           <div class="detail-item">
             <label>Company</label>
             <div class="value">
               <mat-icon>business</mat-icon>
-              <a (click)="goToCompany()" class="clickable-link">{{ contact.companyName || '—' }}</a>
+              <a (click)="goToCompany()" style="cursor: pointer;">{{ contact.companyName || '—' }}</a>
             </div>
           </div>
-
           <div class="detail-item">
             <label>Member Since</label>
             <div class="value">
               <mat-icon>calendar_today</mat-icon>
-              <span>{{ contact.createdAt | date: 'dd MMM yyyy' }}</span>
+              <span>{{ contact.createdAt | date: 'dd.MM.yyyy' }}</span>
             </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="leads-card">
+        <mat-toolbar color="transparent">
+          <span>Related Leads</span>
+          <span class="spacer"></span>
+          <button mat-icon-button color="primary" (click)="addLead()">
+            <mat-icon>add_chart</mat-icon>
+          </button>
+        </mat-toolbar>
+        
+        <mat-card-content>
+          <div class="custom-table">
+            <header class="table-row head lead-mini-grid">
+              <span>Title</span>
+              <span class="text-end">Value / Stage</span>
+            </header>
+
+            @for (lead of leads; track lead.id) {
+              <div class="table-row clickable lead-mini-grid">
+                <div class="lead-info">
+                  <span class="bold">{{ lead.title }}</span>
+                  <small class="text-secondary">{{ lead.createdAt | date: 'dd.MM.yyyy' }}</small>
+                </div>
+                <div class="lead-meta text-end">
+                  <div class="bold">{{ lead.value }}</div>
+                  <span class="stage-badge" [class]="getStageClass(lead.stage)">
+                    {{ getStageName(lead.stage) }}
+                  </span>
+                </div>
+              </div>
+            } @empty {
+              <div class="empty-state">
+                <p>No leads associated with this contact.</p>
+              </div>
+            }
           </div>
         </mat-card-content>
       </mat-card>
@@ -82,7 +117,7 @@
               <mat-card-header>
                   <mat-card-title>{{ activity.subject }}</mat-card-title>
                   <mat-card-subtitle>
-                  {{ getActivityTypeName(activity.type) }} • {{ activity.createdAt | date:'MMM dd, yyyy HH:mm' }}
+                  {{ getActivityTypeName(activity.type) }} • {{ activity.createdAt | date:'MMM dd yyyy, HH:mm' }}
                   </mat-card-subtitle>
                   <span class="spacer"></span>
                   <button mat-icon-button (click)="editActivity(activity.id)">

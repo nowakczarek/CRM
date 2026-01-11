@@ -10,6 +10,9 @@ import { DatePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ActivityType } from '../../../models/enums/activity-type';
+import { LeadService } from '../../../services/lead.service';
+import { Lead } from '../../../models/lead.model';
+import { LeadStage } from '../../../models/enums/lead-stage';
 
 @Component({
   selector: 'app-details',
@@ -20,12 +23,14 @@ import { ActivityType } from '../../../models/enums/activity-type';
 export class Details {
   private contactService = inject(ContactService)
   private activityService = inject(ActivityService)
+  private leadService = inject(LeadService)
 
   private route = inject(ActivatedRoute)
   private router = inject(Router)
 
   contact! : ContactWithCompanyName
   activities : FullActivity[] = []
+  leads : Lead[] = []
 
   ngOnInit(){
     const id = this.route.snapshot.paramMap.get('contactId')
@@ -38,6 +43,10 @@ export class Details {
 
     this.activityService.getAllByContactId(id).subscribe(activities => {
       this.activities = activities
+    })
+
+    this.leadService.getByContactId(id).subscribe(leads => {
+      this.leads = leads
     })
   }
 
@@ -52,7 +61,6 @@ export class Details {
   goToCompany(){
     this.router.navigate(['/companies', this.contact.companyId])
   }
-
 
   editContact(){
     this.router.navigate(['/companies', this.contact.companyId, 'contacts', this.contact.id, 'edit'])
@@ -73,5 +81,23 @@ export class Details {
       default: return 'event_note';
     }
   }
+
+  addLead(){
+    this.router.navigate(['/companies', this.contact.companyId, 'contacts', this.contact.id, 'leads', 'new'])
+  }
+
+  getStageClass(stage: LeadStage): string {
+      switch (stage) {
+        case LeadStage.New: return 'stage-new';
+        case LeadStage.Negotiations: return 'stage-negotiations';
+        case LeadStage.Won: return 'stage-won';
+        case LeadStage.Lost: return 'stage-lost';
+        default: return '';
+      }
+    }
+  
+    getStageName(stage: LeadStage): string {
+      return LeadStage[stage]; 
+    }
 
 }
