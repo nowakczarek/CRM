@@ -49,6 +49,24 @@ namespace CRM.Api.Controllers
             return Ok(lead.ToDto());
         }
 
+        [HttpGet("company/{companyId:guid}")]
+        public async Task<ActionResult<IEnumerable<LeadDto>>> GetByCompanyId(Guid companyId)
+        {
+            var userId = GetUserId();
+
+            var leads = await leadService.GetByCompanyId(userId, companyId);
+            return(Ok(leads.Select(l => l.ToDto())));   
+        }
+
+        [HttpGet("contact/{contactId:guid}")]
+        public async Task<ActionResult<IEnumerable<LeadDto>>> GetByContactId(Guid contactId)
+        {
+            var userId = GetUserId();
+
+            var leads = await leadService.GetByContactId(userId, contactId);
+            return (Ok(leads.Select(l => l.ToDto())));
+        }
+
         [HttpPost]
         public async Task<ActionResult<LeadDto>> Add([FromBody] CreateLeadDto dto)
         {

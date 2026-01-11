@@ -9,5 +9,7 @@ namespace CRM.Core.Interfaces.Repositories
 {
     public interface ILeadRepository : IRepository<Lead>
     {
+        Task<IEnumerable<Lead>> GetByCompanyId(Guid companyId);
+        Task<IEnumerable<Lead>> GetByContactId(Guid contactId);
     }
 }

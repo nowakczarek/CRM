@@ -24,5 +24,15 @@ namespace CRM.Infrastructure.Repositories
                 .OrderByDescending(l => l.CreatedAt)
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<Lead>> GetByCompanyId(Guid companyId)
+        {
+            return await context.Leads.Where(l => l.CompanyId == companyId).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Lead>> GetByContactId(Guid contactId)
+        {
+            return await context.Leads.Where(l => l.ContactId == contactId).ToListAsync();
+        }
     }
 }

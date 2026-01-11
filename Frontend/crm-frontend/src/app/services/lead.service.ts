@@ -18,6 +18,14 @@ export class LeadService {
   getById(id: string) : Observable<Lead>{
     return this.http.get<Lead>(`${this.apiUrl}/${id}`)
   }
+
+  getByCompanyId(companyId: string) : Observable<Lead[]>{
+    return this.http.get<Lead[]>(`${this.apiUrl}/company/${companyId}`)
+  }
+
+  getByContactId(contactId: string) : Observable<Lead[]>{
+    return this.http.get<Lead[]>(`${this.apiUrl}/contact/${contactId}`)
+  }
   
   create(lead: FormLead) : Observable<Lead>{
     return this.http.post<Lead>(`${this.apiUrl}`, lead)

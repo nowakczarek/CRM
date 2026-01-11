@@ -42,6 +42,18 @@ namespace CRM.Application.Services.Implementations
             return all.Where(l => l.UserId == userId);
         }
 
+        public async Task<IEnumerable<Lead>> GetByCompanyId(Guid userId, Guid companyId)
+        {
+            var all = await repository.GetByCompanyId(companyId);
+            return all.Where(l => l.UserId == userId);
+        }
+
+        public async Task<IEnumerable<Lead>> GetByContactId(Guid userId, Guid contactId)
+        {
+            var all = await repository.GetByContactId(contactId);
+            return all.Where(l => l.UserId == userId);
+        }
+
         public async Task<Lead?> GetByIdAsync(Guid id, Guid userId)
         {
             var lead = await repository.GetByIdAsync(id);
