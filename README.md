@@ -1,10 +1,10 @@
 # Customer Relationship Management system
 
-This repository contains both the backend API and the Angular frontend for a Customer Relationship Management (CRM) system.
+This repository contains both the backend REST API and the Angular frontend for a Customer Relationship Management (CRM) system.
 
-The **Backend** is built with **ASP.NET Core 8**, **Entity Framework Core**, and **Identity with JWT authentication**. The solution follows clean architecture principles, ensuring separation of concerns and scalability.
+The **Backend** is built with **ASP.NET Core 8**, **Entity Framework Core**, and **Identity with JWT authentication**.
 
-The **Frontend** is an Angular application that consumes the backend API and implements the client-side user interface.
+The **Frontend** is an Angular 20 application that consumes the backend API and implements the user interface.
 
 
 ## Features
@@ -15,10 +15,14 @@ The **Frontend** is an Angular application that consumes the backend API and imp
   - Angular frontend includes Login page, JWT interceptor, and route guard for protected routes
 - Role management
   - Admin, Manager, User roles (seeded on startup)
-- Entity Framework Core
-  - Generic repository pattern
-  - Services for business logic
-- DTOs and Mapping
+- Entities Management
+  - Full CRUD functionality for Companies, Contacts, Activities and Leads
+- Lead Tracking
+  - Managing sales leads through various stages(New, Negotiations, Lost, Won)
+- Activity Interaction Tracking:
+  - Logging specific interactions with user-friendly UI
+- Global search
+  - Integrated global search funtionality across entities
 - Swagger/OpenAPI
   - API documentation and testing is configured.
 
@@ -27,47 +31,46 @@ The **Frontend** is an Angular application that consumes the backend API and imp
 Backend/
 - **CRM.Core** - Domain models & interfaces
 - **CRM.Infrastructure** - EF Core, repositories, persistence
-- **CRM.Application** - Services, DTOs, business logic
+- **CRM.Application** - Services, DTOs, Mappings
 - **CRM.API** - API controllers, startup, auth
 
-Frontend/
-- **crm-frontend** - Angular application
+Frontend/crm-frontend/
+- **src/app/auth**: Login components and authentication logic.
+- **src/app/pages**: Specific modules for Activities, Companies, Contacts, and Leads.
+- **src/app/services**: Angular services for API communication.
 
 
 ## Setup and Run
 
-### 1. Backend (CRM.API)
+1. **Prerequisites**:
+   - Install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+   - Ensure docker is running.
 
-1.  **Clone the repository**
-    - `git clone https://github.com/nowakczarek/CRM`
-    - `cd CRM/Backend`
-2.  **Configure the database**
-    - Update the connection string in `CRM.API/appsettings.json`
-    - **Apply migrations and seed initial users**: Run the application, as migrations are applied and initial users/roles are seeded on startup.
-    - **Default seeded users**:
-        - `admin@crm.pl` / `Admin123!` (Role: Admin)
-        - `manager@crm.pl` / `Manager123!` (Role: Manager)
-        - `user@crm.pl` / `User123!` (Role: User)
-3.  **Run the API**
-    - `dotnet run --project CRM.API`
-    - The API runs on `https://localhost:7058` by default.
+2. **Run the system**:
+   - `git clone https://github.com/nowakczarek/CRM`
+   - `cd CRM`
+   - `docker-compose up --build`
 
-### 2. Frontend (crm-frontend)
+3. **Access the Applications**
+    - Once the containers are healthy, you can access the following:
+    - Frontend Dashboard: `http://localhost:4200`
+    - API Documentation (Swagger): `http://localhost:7058/swagger`
 
-1.  **Navigate to the frontend directory**
-    - `cd ../Frontend/crm-frontend`
-2.  **Install dependencies**
-    - `npm install`
-3.  **Run the application**
-    - `npm start` or `ng serve`
-    - The application runs on `http://localhost:4200` and is configured to communicate with the backend API.
+**Default seeded users**:
+-   `admin@crm.pl` / `Admin123!` (Role: Admin)
+-   `manager@crm.pl` / `Manager123!` (Role: Manager)
+-   `user@crm.pl` / `User123!` (Role: User)
+
+**Default seeded data**
+- To provide a benchmark experience, the database is populated with sample data using **Bogus** library. 
+
 
 ## Technologies & Key Dependencies
 
 ### Backend (ASP.NET Core)
 | Technology | Purpose | Key Dependency 
 | :--- | :--- | :--- |
-| **.NET Framework** | Core Framework | `Microsoft.NET.Sdk.Web` |
+| **.NET 8** | Core Framework | `Microsoft.NET.Sdk.Web` |
 | **Database** | ORM, SQL Server | `Microsoft.EntityFrameworkCore.SqlServer` |
 | **Identity** | User/Role management | `Microsoft.AspNetCore.Identity.EntityFrameworkCore` |
 | **JWT Auth** | Token generation & validation | `Microsoft.AspNetCore.Authentication.JwtBearer` |
@@ -81,23 +84,15 @@ Frontend/
 | **Forms** | Reactive Forms implementation | `@angular/forms` |
 | **HTTP Client** | Backend communication | `@angular/common` |
 | **Reactive Programming** | Asynchronous operations | `rxjs` |
+| **Angular Material** | UI Improvement | `@angular/material/` |
 
 ## Tech Stack
 - **Backend**: ASP.NET Core 8, Entity Framework Core, SQL Server, ASP.NET Core Identity, JWT Authentication, Swagger/OpenAPI.
-- **Frontend**: Angular, TypeScript, rxjs.
+- **Frontend**: Angular 20, TypeScript, rxjs, Angular Material, CSS, HTML.
 
 
-## Current Status & Next Steps
-
-The core infrastructure is complete. Some API endpoints are to be added. The frontend development has a solid foundation.
-
-### Completed (UI & Logic)
-- **User Authentication**: Login, Logout, Session management via JWT.
-- **Companies Module**: Full CRUD functionality is implemented on the Angular frontend.
-
-### Next Steps
-- Implement the User Interface (List, Create, Edit, Details) for the remaining core modules:
-    - **Contacts**
-    - **Leads**
-    - **Activities**
-- Enhance the UI/UX across the application (e.g., dashboard, better forms).
+## Next steps
+- Improving UI/UX
+- Adding pagination
+- Implementing a central dashboard
+- Adding search for specific modules
