@@ -23,7 +23,7 @@
         <span>Lead / Title</span>
         <span>Company & Contact</span>
         <span>Value</span>
-        <span>Stage</span>
+        <span style="text-align: center;">Stage</span>
         <span class="col-actions"></span>
       </div>
 
@@ -45,7 +45,7 @@
             <span class="currency-value">{{ lead.value }}</span>
           </div>
 
-          <div>
+          <div class="stage-cell">
             <span class="stage-badge" [class]="getStageClass(lead.stage)">
               {{ getStageName(lead.stage) }}
             </span>

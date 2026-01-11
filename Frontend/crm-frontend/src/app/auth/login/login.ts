@@ -24,7 +24,7 @@ export class Login {
     this.authService.login(this.email, this.password).subscribe({
       next: (res) => {
         this.authService.saveToken(res.token)
-        this.router.navigate(['dashboard'])
+        this.router.navigate(['companies'])
       },
       error: () => (this.error = 'Invalid email or password')
     })

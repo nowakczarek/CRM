@@ -7,7 +7,7 @@
 }
 
 .summary-card {
-  border-left: 0.4rem solid #10b981 !important; /* Success Green */
+  border-left: 0.4rem solid #10b981 !important;
 }
 
 .summary-flex {
@@ -63,18 +63,19 @@
 
 .table-row {
   display: grid;
-  grid-template-columns: 2.5fr 2fr 1.2fr 1fr 4.5rem; 
+  grid-template-columns: 3fr 2fr 1fr 1fr 4.5rem; 
   align-items: center;
   padding: 1rem 1.5rem;
   border-bottom: 1px solid #f3f4f6;
+  gap: 1rem;
   transition: background-color 0.2s;
 }
 
 .header-row {
   background: #f9fafb;
-  font-weight: 600;
+  font-weight: 500;
   color: #4b5563;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.025em;
 }
@@ -126,7 +127,13 @@
   font-size: 1rem;
 }
 
-/* 4. Stage Badges (Mapping to Enum) */
+.stage-cell {
+  display: flex;
+  justify-content: center; /* Centrowanie w poziomie */
+  align-items: center;     /* Centrowanie w pionie */
+  width: 100%;
+}
+
 .stage-badge {
   padding: 0.35rem 0.75rem;
   border-radius: 2rem;

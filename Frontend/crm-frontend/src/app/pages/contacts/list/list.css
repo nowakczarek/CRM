@@ -37,7 +37,7 @@
 
 .table-row {
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr 1fr 4.5rem; 
+  grid-template-columns: 2fr 1.5fr 1.5fr 1fr 4.5rem; 
   align-items: center;
   padding: 1rem 1.5rem;
   transition: background 0.2s;
