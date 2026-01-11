@@ -1,0 +1,35 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Admin123!
+    ports:
+      - "1433:1433"
+
+  backend:
+      build:
+        context: ./Backend
+        dockerfile: Dockerfile
+      ports:
+        - "7058:8080"
+      environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - ConnectionStrings__DefaultConnection=Server=db;Database=CrmDb;User Id=sa;Password=Admin123!;Encrypt=False;TrustServerCertificate=True
+        - DOTNET_USE_POLLING_FILE_WATCHER=1
+      volumes:
+        - ./Backend:/app
+      depends_on:
+        - db
+
+  frontend:
+    build:
+      context: ./Frontend/crm-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./Frontend/crm-frontend:/app
+      - /app/node_modules/
+    depends_on:
+      - backend

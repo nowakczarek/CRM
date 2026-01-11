@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddDatabase(builder.Configuration);
 builder.Services.AddRepositories();
@@ -23,31 +22,38 @@ builder.Services.AddCorsConfig();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+try
 {
-    var services = scope.ServiceProvider;
-    var db = scope.ServiceProvider.GetRequiredService<CrmDbContext>();
-    db.Database.Migrate();
-
-    if (app.Environment.IsDevelopment())
+    using (var scope = app.Services.CreateScope())
     {
-        await IdentitySeeder.SeedAsync(services);
-        await DataSeeder.SeedData(db, services);
-    }
+        var services = scope.ServiceProvider;
+        var db = scope.ServiceProvider.GetRequiredService<CrmDbContext>();
+        db.Database.Migrate();
 
+        if (app.Environment.IsDevelopment())
+        {
+            await IdentitySeeder.SeedAsync(services);
+            await DataSeeder.SeedData(db, services);
+        }
+
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Database Migration Failed: {ex.Message}");
 }
 
-// Configure the HTTP request pipeline.
-app.UseHttpsRedirection();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
 app.UseCors("FrontendPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.MapControllers();
 app.Run();
